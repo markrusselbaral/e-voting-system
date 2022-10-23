@@ -34,7 +34,7 @@ class VotersController extends Controller
             'status_id' => 1
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('save','Voter Added Successfully');
     }
 
 
@@ -58,7 +58,20 @@ class VotersController extends Controller
             'status_id' => 1 
 
         ]);
-        return redirect()->route('index');
+        return redirect()->route('index')->with('update','Voter Deleted Successfully');;
+    }
+
+    public function delete(Request $request)
+    {
+        VoterLogin::whereid($request->deleteid)->delete();
+        return redirect()->route('index')->with('delete','Voter Deleted Successfully');
+    }
+
+
+    public function deleteAll(Request $request)
+    {
+       DB::table('voter_logins')->delete();
+        return redirect()->route('index')->with('deleteAll','Voter Deleted Successfully');
     }
 
 }

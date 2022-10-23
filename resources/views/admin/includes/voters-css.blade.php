@@ -14,7 +14,7 @@
 <!-- datatable -->
 <link href="admin/assets/css/vendor/buttons.bootstrap5.css" rel="stylesheet" type="text/css" />
 
-
+<link href="admin/assets/toasttr/build/toastr.min.css" rel="stylesheet" type="text/css" />
 
 
 

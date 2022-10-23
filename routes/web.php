@@ -28,6 +28,8 @@ Route::get('/voters',[VotersController::class,'index'])->name('index');
 Route::post('/voters',[VotersController::class,'save'])->name('save');
 Route::get('/edit-voter/{id}', [VotersController::class,'edit'])->name('edit');
 Route::put('/voters', [VotersController::class,'update'])->name('update');
+Route::delete('/voters', [VotersController::class,'delete'])->name('delete');
+Route::delete('/deleteAllVoters', [VotersController::class,'deleteAll'])->name('deleteAll');
 
 
 

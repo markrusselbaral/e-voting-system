@@ -4,7 +4,7 @@
 
 
 <!-- demo app -->
-<script src="admin/assets/js/pages/demo.products.js"></script>
+<script src="admin/assets/toasttr/build/toastr.min.js"></script>
 <!-- end demo js-->
 
 
@@ -22,4 +22,6 @@
 <script src="admin/assets/js/vendor/buttons.html5.min.js"></script>
 <script src="admin/assets/js/vendor/buttons.flash.min.js"></script>
 <script src="admin/assets/js/vendor/buttons.print.min.js"></script>
+
+
 

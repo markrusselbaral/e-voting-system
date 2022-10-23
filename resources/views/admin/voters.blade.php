@@ -5,6 +5,57 @@
 @endsection
 
 @section('content')
+
+<!-- Delete All modal -->
+<form action="{{ route('deleteAll') }}" method="POST">
+@csrf
+@method('DELETE')
+<div id="deleteAllModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="danger-header-modalLabel">Delete</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="deleteid" id="deleteid">
+                <h4>Are you sure you want to delete all voters?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</form>
+
+
+<!-- Delete modal -->
+<form action="{{ route('delete') }}" method="POST">
+@csrf
+@method('DELETE')
+<div id="deletemodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="danger-header-modalLabel">Delete</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="deleteid" id="deleteid">
+                <h4>Are you sure you want to delete this voter?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</form>
+
+
 <!-- Update Modal -->
 <form action="{{ route('update') }}" method="POST">
 @csrf
@@ -400,8 +451,8 @@
                                         <img src="admin/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Soeng Souy</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">Mark Russel Baral</span>
+                                        <span class="account-position">Admin</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -537,11 +588,12 @@
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
-                                                <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Voter</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Voter</a>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="text-sm-end">
-                                                    <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
+                                                    <button type="button" class="btn btn-danger mb-2 me-1" data-bs-toggle="modal" data-bs-target="#deleteAllModal"><i class="mdi mdi-delete-outline"></i>Delete all</button>
+        
                                                     <button type="button" class="btn btn-light mb-2 me-1">Import</button>
                                                     <button type="button" class="btn btn-light mb-2">Export</button>
                                                 </div>
@@ -575,7 +627,10 @@
 
                                                             
                                                             <button class="editbtn" value="{{ $value->voter_id }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
+
+                                                            <button class="deletebtn" value="{{ $value->voter_id }}" style="border: none; background-color: transparent;">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                            </button>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -719,4 +774,6 @@
 @section('js')
     @include('admin.includes.voters-js')
     @include('admin.includes.voter-edit-modal')
+    @include('admin.includes.voter-delete-modal')
+    @include('admin.includes.voters-toast-notification')
 @endsection
