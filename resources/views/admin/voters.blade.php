@@ -18,7 +18,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="deleteid" id="deleteid">
                 <h4>Are you sure you want to delete all voters?</h4>
             </div>
             <div class="modal-footer">
