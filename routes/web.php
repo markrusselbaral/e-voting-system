@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\VotersController;
 use App\Http\Controllers\Admin\PositionsController;
+use App\Http\Controllers\Admin\CoursesectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,16 @@ Route::post('/positions',[PositionsController::class,'save'])->name('position-sa
 Route::get('/edit-position/{id}', [PositionsController::class,'edit'])->name('position-edit');
 Route::put('/positions', [PositionsController::class,'update'])->name('position-update');
 Route::delete('/positions', [PositionsController::class,'delete'])->name('position-delete');
-Route::delete('/positionsAllPositions', [PositionsController::class,'deleteAll'])->name('position-deleteAll');
+Route::delete('/deleteAllPositions', [PositionsController::class,'deleteAll'])->name('position-deleteAll');
 
+
+// admin-course & section
+Route::get('/course_section',[CoursesectionController::class,'index'])->name('course-section-index');
+Route::post('/course_section',[CoursesectionController::class,'save'])->name('course-section-save');
+Route::get('/edit-course_section/{id}', [CoursesectionController::class,'edit'])->name('course-section-edit');
+Route::put('/course_section', [CoursesectionController::class,'update'])->name('course-section-update');
+Route::delete('/course_section', [CoursesectionController::class,'delete'])->name('course-section-delete');
+Route::delete('/deleteAllCourse_section', [CoursesectionController::class,'deleteAll'])->name('course-section-deleteAll');
 
 
 
