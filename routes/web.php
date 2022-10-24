@@ -36,7 +36,7 @@ Route::post('/positions',[PositionsController::class,'save'])->name('position-sa
 Route::get('/edit-position/{id}', [PositionsController::class,'edit'])->name('position-edit');
 Route::put('/positions', [PositionsController::class,'update'])->name('position-update');
 Route::delete('/positions', [PositionsController::class,'delete'])->name('position-delete');
-Route::delete('/positionsAllPositions', [PositionsController::class,'deleteAll'])->name('position-deleteAll');
+Route::delete('/deleteAllPositions', [PositionsController::class,'deleteAll'])->name('position-deleteAll');
 
 
 
