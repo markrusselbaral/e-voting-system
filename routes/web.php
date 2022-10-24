@@ -5,6 +5,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\VotersController;
 use App\Http\Controllers\Admin\PositionsController;
 use App\Http\Controllers\Admin\CoursesectionController;
+use App\Http\Controllers\Admin\DepartmentsController;
+use App\Http\Controllers\Admin\CollegesController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +20,15 @@ use App\Http\Controllers\Admin\CoursesectionController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+// admin-dashboard
+Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard-index');
 
 
 // admin-voters
 Route::get('/voters',[VotersController::class,'index'])->name('index');
 Route::post('/voters',[VotersController::class,'save'])->name('save');
+Route::post('file-import', [VotersController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [VotersController::class, 'fileExport'])->name('file-export');
 Route::get('/edit-voter/{id}', [VotersController::class,'edit'])->name('edit');
 Route::put('/voters', [VotersController::class,'update'])->name('update');
 Route::delete('/voters', [VotersController::class,'delete'])->name('delete');
@@ -50,6 +54,23 @@ Route::delete('/deleteAllCourse_section', [CoursesectionController::class,'delet
 
 
 
+// admin-department
+Route::get('/departments',[DepartmentsController::class,'index'])->name('department-index');
+Route::post('/departments',[DepartmentsController::class,'save'])->name('department-save');
+Route::get('/edit-department/{id}', [DepartmentsController::class,'edit'])->name('department-edit');
+Route::put('/departments', [DepartmentsController::class,'update'])->name('department-update');
+Route::delete('/departments', [DepartmentsController::class,'delete'])->name('department-delete');
+Route::delete('/deleteAllDepartments', [PositionsController::class,'deleteAll'])->name('department-deleteAll');
+
+
+// admin-college
+Route::get('/colleges',[CollegesController::class,'index'])->name('college-index');
+Route::post('/colleges',[CollegesController::class,'save'])->name('collage-save');
+Route::get('/edit-college/{id}', [CollegesController::class,'edit'])->name('college-edit');
+Route::put('/colleges', [CollegesController::class,'update'])->name('college-update');
+Route::delete('/colleges', [CollegesController::class,'delete'])->name('college-delete');
+Route::delete('/deleteAllCollege', [CollegesController::class,'deleteAll'])->name('college-deleteAll');
+
 
 
 // voters
@@ -66,5 +87,4 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
 
 
-Route::post('file-import', [VotersController::class, 'fileImport'])->name('file-import');
-Route::get('file-export', [VotersController::class, 'fileExport'])->name('file-export');
+

@@ -31,65 +31,8 @@
                 </a>
     
                 <div class="h-100" id="leftside-menu-container" data-simplebar="">
-
                     <!--- Sidemenu -->
-                    <ul class="side-nav">
-
-                        <li class="side-nav-title side-nav-item">Navigation</li>
-
-                         <li class="side-nav-item">
-                            <a href="/dashboard" class="side-nav-link">
-                                <i class="uil-calender"></i>
-                                <span> Dashboard </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-title side-nav-item">Manage</li>
-
-                        <li class="side-nav-item">
-                            <a href="/voters" class="side-nav-link">
-                                <i class="uil-calender"></i>
-                                <span> Voters </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Positions </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Candidates </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Party </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-title side-nav-item">Settings</li>
-
-                        <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Ballot Position </span>
-                            </a>
-                        </li>
-
-                        <li class="side-nav-item">
-                            <a href="apps-chat.html" class="side-nav-link">
-                                <i class="uil-comments-alt"></i>
-                                <span> Election Title </span>
-                            </a>
-                        </li>
-                    </ul>   
+                    @include('admin.includes.sidemenu')
                     <!-- End Sidebar -->
                     <div class="clearfix"></div>
                 </div>
