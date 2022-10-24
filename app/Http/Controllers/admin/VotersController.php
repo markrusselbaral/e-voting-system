@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\VoterLogin;
 use App\Models\Course_section;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\VotersImport;
+use App\Exports\VotersExport;
 
 class VotersController extends Controller
 {
@@ -73,5 +76,16 @@ class VotersController extends Controller
        DB::table('voter_logins')->delete();
         return redirect()->route('index')->with('deleteAll','Voter Deleted Successfully');
     }
+
+     public function fileImport(Request $request) 
+    {
+        Excel::import(new VotersImport, $request->file('file')->store('temp'));
+        return redirect()->back();
+    }
+
+     public function fileExport() 
+    {
+        return Excel::download(new VotersExport, 'voters.xlsx');
+    }  
 
 }

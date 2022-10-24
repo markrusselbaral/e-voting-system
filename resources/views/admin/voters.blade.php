@@ -590,13 +590,19 @@
                                                 <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Voter</a>
                                             </div>
                                             <div class="col-sm-8">
+                                                <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
                                                 <div class="text-sm-end">
                                                     <button type="button" class="btn btn-danger mb-2 me-1" data-bs-toggle="modal" data-bs-target="#deleteAllModal"><i class="mdi mdi-delete-outline"></i>Delete all</button>
-        
-                                                    <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                                    <button type="button" class="btn btn-light mb-2">Export</button>
+
+                                                    <input type="file"  class="btn btn-light mb-2 me-1" name="file">
+                                                    
+                                                    <button type="submit" class="btn btn-light mb-2">Import</button>
+
+                                                    <a href="{{ route('file-export') }}"><button type="button" class="btn btn-light mb-2">Export</button></a>
                                                 </div>
                                             </div><!-- end col-->
+                                            </form>
                                         </div>
                 
                                         <div class="table-responsive">
