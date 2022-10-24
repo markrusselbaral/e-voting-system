@@ -7,7 +7,7 @@
 @section('content')
 
 <!-- Delete All modal -->
-<form action="{{ route('position-deleteAll') }}" method="POST">
+<form action="{{ route('course-section-deleteAll') }}" method="POST">
 @csrf
 @method('DELETE')
 <div id="deleteAllModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
@@ -18,7 +18,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <h4>Are you sure you want to delete all position?</h4>
+                <h4>Are you sure you want to delete all courses & sections?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -31,7 +31,7 @@
 
 
 <!-- Delete modal -->
-<form action="{{ route('position-delete') }}" method="POST">
+<form action="{{ route('course-section-delete') }}" method="POST">
 @csrf
 @method('DELETE')
 <div id="deletemodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
@@ -43,7 +43,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="deleteid" id="deleteid">
-                <h4>Are you sure you want to delete this position?</h4>
+                <h4>Are you sure you want to delete this course & section?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -56,27 +56,23 @@
 
 
 <!-- Update Modal -->
-<form action="{{ route('position-update') }}" method="POST">
+<form action="{{ route('course-section-update') }}" method="POST">
 @csrf
 @method('PUT')
 <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="standard-modalLabel">Edit Voter</h4>
+                <h4 class="modal-title" id="standard-modalLabel">Edit Course & Section</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 
-                 <!-- CONTENT -->
+                <!-- CONTENT -->
                 <div class="mb-3">
-                    <input type="hidden" name="edit_position_id" id="edit-position-id">
-                    <label for="position-edit" class="form-label">Position</label>
-                    <input type="text" class="form-control" id="position-edit" placeholder="Enter Position" name="position_edit">
-                </div>
-                <div class="mb-3">
-                    <label for="position-order-edit" class="form-label">Position Order</label>
-                    <input type="number" class="form-control" id="position-order-edit" placeholder="Enter Position Order" name="position_order_edit">
+                	<input type="hidden" name="edit_course_section_id" id="edit-course_section-id">
+                    <label for="course_section" class="form-label">Course & Section</label>
+                    <input type="text" class="form-control" id="course_section-edit" placeholder="Enter Course & Section" name="course_section_edit">
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -93,25 +89,21 @@
 
 
 <!-- Save modal -->
-<form action="{{ route('position-save') }}" method="POST">
+<form action="{{ route('course-section-save') }}" method="POST">
 @csrf
 <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="standard-modalLabel">Add Position</h4>
+                <h4 class="modal-title" id="standard-modalLabel">Add Course & Section</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 
                 <!-- CONTENT -->
                 <div class="mb-3">
-                    <label for="position" class="form-label">Position</label>
-                    <input type="text" class="form-control" id="position" placeholder="Enter Position" name="position">
-                </div>
-                <div class="mb-3">
-                    <label for="position-order" class="form-label">Position Order</label>
-                    <input type="number" class="form-control" id="position-order" placeholder="Enter Position Order" name="position_order">
+                    <label for="course_section" class="form-label">Course & Section</label>
+                    <input type="text" class="form-control" id="course_section" placeholder="Enter Course & Section" name="course_section">
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -544,10 +536,10 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Manage</a></li>
-                                            <li class="breadcrumb-item active">Positions</li>
+                                            <li class="breadcrumb-item active">Course & Sections</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Positions</h4>
+                                    <h4 class="page-title">Course & Sections</h4>
                                 </div>
                             </div>
                         </div>     
@@ -559,7 +551,7 @@
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
-                                                <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Position</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Course & Section</a>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="text-sm-end">
@@ -572,18 +564,16 @@
                                           <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                             <thead>
                                             <tr>
-                                                <th>Position</th>
-                                                <th>Position Order</th>
+                                                <th>Course & Section</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
 
 
                                             <tbody>
-                                            @foreach($positions as $value)
+                                            @foreach($course_section as $value)
                                             <tr>
-                                                <td>{{ $value->position }}</td>
-                                                <td>{{ $value->position_order }}</td>
+                                                <td>{{ $value->course_sections }}</td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 
@@ -735,7 +725,7 @@
 
 @section('js')
     @include('admin.includes.voters-js')
-    @include('admin.includes.position-edit-modal')
-    @include('admin.includes.position-delete-modal')
-    @include('admin.includes.positions-toast-notification')
+    @include('admin.includes.course_section-edit-modal')
+    @include('admin.includes.course_section-delete-modal')
+    @include('admin.includes.course_section-toast-notification')
 @endsection

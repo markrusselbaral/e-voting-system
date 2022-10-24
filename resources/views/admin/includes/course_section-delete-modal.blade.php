@@ -7,7 +7,7 @@
      // alert(pid);
      $.ajax({
          type: "GET",
-         url: "/edit-position/"+pid,
+         url: "/edit-course_section/"+pid,
          success: function (response) {
             $('#deleteid').val(pid) 
          }
@@ -15,6 +15,3 @@
     });
 });
 </script>
-
-
-
