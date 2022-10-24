@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\VotersController;
+use App\Http\Controllers\Admin\PositionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +21,22 @@ Route::get('/dashboard', function () {
 });
 
 
-// admin
+// admin-voters
 Route::get('/voters',[VotersController::class,'index'])->name('index');
 Route::post('/voters',[VotersController::class,'save'])->name('save');
 Route::get('/edit-voter/{id}', [VotersController::class,'edit'])->name('edit');
 Route::put('/voters', [VotersController::class,'update'])->name('update');
 Route::delete('/voters', [VotersController::class,'delete'])->name('delete');
 Route::delete('/deleteAllVoters', [VotersController::class,'deleteAll'])->name('deleteAll');
+
+
+// admin-position
+Route::get('/positions',[PositionsController::class,'index'])->name('position-index');
+Route::post('/positions',[PositionsController::class,'save'])->name('position-save');
+Route::get('/edit-position/{id}', [PositionsController::class,'edit'])->name('position-edit');
+Route::put('/positions', [PositionsController::class,'update'])->name('position-update');
+Route::delete('/positions', [PositionsController::class,'delete'])->name('position-delete');
+Route::delete('/positionsAllPositions', [PositionsController::class,'deleteAll'])->name('position-deleteAll');
 
 
 

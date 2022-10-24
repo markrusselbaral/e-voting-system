@@ -16,11 +16,11 @@ class VotersImport implements ToModel
     public function model(array $row)
     {
         return new VoterLogin([
-            'ismis_id'          => $row[0],
-            'fname'             => $row[1],
-            'lname'             => $row[2],
-            'course_section_id' => $row[3],
-            'status_id'         => $row[4],
+            'ismis_id'          => $row[1],
+            'fname'             => $row[2],
+            'lname'             => $row[3],
+            'course_section_id' => $row[4],
+            'status_id'         => $row[5],
         ]);
     }
 }
