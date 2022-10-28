@@ -47,14 +47,14 @@
 </li>
 
 <li class="side-nav-item">
-    <a href="apps-chat.html" class="side-nav-link">
+    <a href="{{ route('partylist-index') }}" class="side-nav-link">
         <i class="uil-comments-alt"></i>
         <span> Partylist </span>
     </a>
 </li>
 
 <li class="side-nav-item">
-    <a href="apps-chat.html" class="side-nav-link">
+    <a href="{{ route('candidate-index') }}" class="side-nav-link">
         <i class="uil-comments-alt"></i>
         <span> Candidates </span>
     </a>

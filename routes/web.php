@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\CoursesectionController;
 use App\Http\Controllers\Admin\DepartmentsController;
 use App\Http\Controllers\Admin\CollegesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PartylistsController;
+use App\Http\Controllers\Admin\CandidatesController;
+use App\Http\Controllers\MemberController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +77,21 @@ Route::delete('/deleteAllCollege', [CollegesController::class,'deleteAll'])->nam
 
 
 
+// admin-partylist
+Route::get('/partylists',[PartylistsController::class,'index'])->name('partylist-index');
+Route::post('/partylists',[PartylistsController::class,'save'])->name('partylist-save');
+Route::get('/edit-partylist/{id}', [PartylistsController::class,'edit'])->name('partylist-edit');
+Route::put('/partylists', [PartylistsController::class,'update'])->name('partylist-update');
+Route::delete('/partylists', [PartylistsController::class,'delete'])->name('partylist-delete');
+Route::delete('/deleteAllPartylist', [PartylistsController::class,'deleteAll'])->name('partylist-deleteAll');
+
+
+
+// admin-candidate
+Route::get('/candidates',[CandidatesController::class,'index'])->name('candidate-index');
+Route::post('/candidates-search',[CandidatesController::class,'search'])->name('candidate-search');
+
+
 // voters
 Route::post('login',[UserController::class,'check'])->name('voter.login');
 Route::get('logout',[UserController::class,'logout'])->name('logout');
@@ -82,8 +101,6 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 	Route::get('auth/vote',[UserController::class,'vote'])->name('vote');
 	Route::post('webcam', [UserController::class, 'submit_vote'])->name('submit.vote');
 });
-
-
 
 
 

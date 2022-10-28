@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->string('fname');
-            $table->string('lname');
+            $table->unsignedBigInteger('voters_id')->nullable();
+            $table->foreign('voters_id')->references('id')->on('voter_logins');
             $table->unsignedBigInteger('position_id')->nullable();
             $table->foreign('position_id')->references('id')->on('positions');
+            $table->unsignedBigInteger('partylist_id')->nullable();
+            $table->foreign('partylist_id')->references('id')->on('partylists');
             $table->timestamps();
         });
     }
