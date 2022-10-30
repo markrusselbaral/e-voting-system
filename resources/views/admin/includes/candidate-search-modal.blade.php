@@ -24,12 +24,13 @@
                 // console.log(data);
                     var searchResultAjax='';
                     d = JSON.parse(data);
-                    if(data)
+                    if(d)
                     {
-                        $('#position').val(d[0].position)
+                        $('#voters_id').val(d[0].id)
                         $('#firstname').val(d[0].fname)
                         $('#lastname').val(d[0].lname)
-                        $('#partylist').val(d[0].partylists)
+                        $('.otherInputs').show();
+                        console.log(d);
                     }
   
                 }

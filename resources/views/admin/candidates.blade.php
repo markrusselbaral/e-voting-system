@@ -70,9 +70,23 @@
                 
                 <!-- CONTENT -->
                 <div class="mb-3">
-                	<input type="hidden" name="edit_partylist_id" id="edit-partylist-id">
-                    <label for="department-edit" class="form-label">Partylist</label>
-                    <input type="text" class="form-control" id="partylist-edit" placeholder="Enter Partylist" name="partylist_edit">
+                	<input type="hidden" name="edit_candidate_id" id="edit-candidate-id">
+                    <label for="edit_position" class="form-label">Position</label>
+                    <select class="form-select mb-3" name="edit_position_id" id="edit_position">
+                        <option selected>...</option>
+                        @foreach($position as $value)
+                        <option value="{{ $value->id }}">{{ $value->position }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="edit_partylist" class="form-label">Partylist</label>
+                    <select class="form-select mb-3" id="edit_partylist" name="edit_partylist_id">
+                        <option selected>...</option>
+                        @foreach($partylist as $value)
+                        <option value="{{ $value->id }}">{{ $value->partylists }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -89,7 +103,7 @@
 
 
 <!-- Save modal -->
-<form action="{{ route('partylist-save') }}" method="POST">
+<form action="{{ route('candidate-save') }}" method="POST">
 @csrf
 <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
@@ -104,22 +118,36 @@
                 <div class="mb-3">
                     <label for="ismis-id" class="form-label">Search by ISMIS ID</label>
                     <input type="search" class="form-control" id="inputSearch" placeholder="Enter ISMIS ID" name="inputSearch">
+                    <input type="hidden" class="form-control" id="voters_id" name="voters_id">
                 </div>
-                <div class="mb-3">
-                    <label for="Position" class="form-label">Position</label>
-                    <input type="text" class="form-control" id="position" placeholder="Enter Position" name="position">
-                </div>
+                <div class="otherInputs" style="display: none;">
                 <div class="mb-3">
                     <label for="firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="firstname">
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="firstname" disabled>
                 </div>  
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname">
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="position" class="form-label">Position</label>
+                    <select class="form-select mb-3" id="position" name="position_id">
+                        <option selected>...</option>
+                        @foreach($position as $value)
+                        <option value="{{ $value->id }}">{{ $value->position }}</option>
+                        @endforeach
+                    </select>
+
                 </div>
                 <div class="mb-3">
                     <label for="partylist" class="form-label">Partylist</label>
-                    <input type="text" class="form-control" id="partylist" placeholder="Enter Partylist" name="partylist" disabled>
+                    <select class="form-select mb-3" id="partylist" name="partylist_id">
+                        <option selected>...</option>
+                        @foreach($partylist as $value)
+                        <option value="{{ $value->id }}">{{ $value->partylists }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -139,15 +167,7 @@
             <!-- ========== Left Sidebar Start ========== -->
             <div class="leftside-menu">
     
-                <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-light">
-                    <span class="logo-lg">
-                        <img src="admin/assets/images/logo.png" alt="" height="16">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="admin/assets/images/logo_sm.png" alt="" height="16">
-                    </span>
-                </a>
+                @include('admin.includes.logo')
 
                 <!-- LOGO -->
                 <a href="index.html" class="logo text-center logo-dark">
@@ -686,12 +706,17 @@
 
         <div class="rightbar-overlay"></div>
         <!-- /End-bar -->
-        
+        <!-- <script>
+            const ep = document.getElementById('edit-position').value;
+            const ep2 = document.getElementById('edit_position').value = ep;
+            console.log(ep);
+        </script> -->
 @endsection
 
 @section('js')
     @include('admin.includes.voters-js')
     @include('admin.includes.candidate-search-modal')
+    @include('admin.includes.candidate-edit-modal')
     @include('admin.includes.partylist-delete-modal')
     @include('admin.includes.partylist-toast-notification')
 @endsection

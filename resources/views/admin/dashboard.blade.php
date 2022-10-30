@@ -10,25 +10,8 @@
             <!-- ========== Left Sidebar Start ========== -->
             <div class="leftside-menu">
     
-                <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-light">
-                    <span class="logo-lg">
-                        <img src="admin/assets/images/barallogo22.png" alt="" height="40">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="admin/assets/images/bisu-logo.png" alt="" height="43">
-                    </span>
-                </a>
+                @include('admin.includes.logo')
 
-                <!-- LOGO -->
-                <a href="index.html" class="logo text-center logo-dark">
-                    <span class="logo-lg">
-                        <img src="admin/assets/images/logo-dark.png" alt="" height="16">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="admin/assets/images/logo_sm_dark.png" alt="" height="16">
-                    </span>
-                </a>
     
                 <div class="h-100" id="leftside-menu-container" data-simplebar="">
                     <!--- Sidemenu -->
@@ -244,8 +227,8 @@
                                         <img src="admin/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Soeng Souy</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">Mark Russel Baral</span>
+                                        <span class="account-position">Admin</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

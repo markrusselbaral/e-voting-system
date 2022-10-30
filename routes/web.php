@@ -10,7 +10,6 @@ use App\Http\Controllers\Admin\CollegesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartylistsController;
 use App\Http\Controllers\Admin\CandidatesController;
-use App\Http\Controllers\MemberController;
 
 
 /*
@@ -90,6 +89,10 @@ Route::delete('/deleteAllPartylist', [PartylistsController::class,'deleteAll'])-
 // admin-candidate
 Route::get('/candidates',[CandidatesController::class,'index'])->name('candidate-index');
 Route::post('/candidates-search',[CandidatesController::class,'search'])->name('candidate-search');
+Route::post('/candidates',[CandidatesController::class,'save'])->name('candidate-save');
+Route::get('/edit-candidate/{id}', [CandidatesController::class,'edit'])->name('candidate-edit');
+
+
 
 
 // voters
@@ -101,6 +104,9 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 	Route::get('auth/vote',[UserController::class,'vote'])->name('vote');
 	Route::post('webcam', [UserController::class, 'submit_vote'])->name('submit.vote');
 });
+
+
+
 
 
 

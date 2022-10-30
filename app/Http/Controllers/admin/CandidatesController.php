@@ -6,13 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
 use DB;
+use App\Models\VoterLogin;
+use App\Models\Partylist;
+use App\Models\Position;
 
 class CandidatesController extends Controller
 {
     public function index()
     {
-        
-         $candidate = DB::table('candidates')
+
+        $position = Position::select('id','position')->get();
+        $partylist = Partylist::select('id','partylists')->get();
+        $candidate = DB::table('candidates')
 
             ->join('positions', 'candidates.position_id', '=', 'positions.id')
             ->join('voter_logins', 'candidates.voters_id', '=', 'voter_logins.id')
@@ -21,19 +26,21 @@ class CandidatesController extends Controller
             ->orderBy('positions.id')
             ->get();
 
-           return view('admin.candidates', compact('candidate'));
+           return view('admin.candidates', compact('candidate','partylist','position'));
             // return $candidate;
     }
 
     public function save(Request $request)
     {
-        College::create([
+        Candidate::create([
 
-            'colleges' => $request->college,
+            'voters_id' => $request->voters_id,
+            'position_id' => $request->position_id,
+            'partylist_id' => $request->partylist_id
 
         ]);
 
-        return redirect()->route('college-index')->with('save','College Added Successfully');
+        return redirect()->route('candidate-index')->with('save','Candidate Added Successfully');
     }
 
 
@@ -41,19 +48,32 @@ class CandidatesController extends Controller
      public function search(Request $request)
     {
 
-        $candidate = DB::table('candidates')
+            $candidate = VoterLogin::select('id','fname','lname','ismis_id')
+                        ->where('ismis_id',$request['inputSearch'])
+                        ->get();
+                         echo $candidate;
 
-            ->join('positions', 'candidates.position_id', '=', 'positions.id')
-            ->join('voter_logins', 'candidates.voters_id', '=', 'voter_logins.id')
-            ->join('partylists', 'candidates.partylist_id', '=', 'partylists.id')
-            ->select('positions.position','voter_logins.fname','voter_logins.lname','partylists.partylists')
-            ->where('voter_logins.ismis_id',$request['inputSearch'])
-            ->orderBy('positions.id')
-            ->get();
-
-            echo $candidate;
     }
 
+
+     public function edit($id)
+    {
+
+        // $q = DB::table('candidates')
+        //     ->join('positions', 'positions.id', '=', 'candidates.position_id')
+        //     ->join('partylists', 'partylists.id', '=', 'candidates.partylist_id')
+        //     ->select('positions.position','partylists.partylists')
+        //     ->where('candidates.id',$id)
+        //     ->get();
+
+        $q = Candidate::find($id);
+
+        return response()->json([
+            'status'=>200,
+            'candidates' =>$q,
+        ]);
+
+    }
     
 
     public function update(Request $request)
