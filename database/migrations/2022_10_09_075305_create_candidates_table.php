@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('position_id')->references('id')->on('positions');
             $table->unsignedBigInteger('partylist_id')->nullable();
             $table->foreign('partylist_id')->references('id')->on('partylists');
+            $table->string('picture');
             $table->timestamps();
         });
     }

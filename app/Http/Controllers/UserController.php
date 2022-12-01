@@ -9,6 +9,7 @@ use Storage;
 use App\Models\Image;
 use App\Models\Candidate;
 use App\Models\Votes;
+use DB;
 
 class UserController extends Controller
 {
@@ -21,10 +22,19 @@ class UserController extends Controller
     {
         $data = ['LoggedUserInfo'=>VoterLogin::where('id', session('LoggedUser'))->first()];
 
-        $candidates = Candidate::join('positions', 'candidates.position_id', '=', 'positions.id')->select('positions.*','candidates.*')->orderBy('positions.id')
+        // $candidates = Candidate::join('positions', 'candidates.position_id', '=', 'positions.id')->select('positions.*','candidates.*')->orderBy('positions.id')
+        //     ->get();
+
+         $candidates = DB::table('candidates')
+
+            ->join('positions', 'candidates.position_id', '=', 'positions.id')
+            ->join('voter_logins', 'candidates.voters_id', '=', 'voter_logins.id')
+            ->join('partylists', 'candidates.partylist_id', '=', 'partylists.id')
+            ->select('positions.position','voter_logins.ismis_id','candidates.id as cid','voter_logins.fname','voter_logins.lname','voter_logins.id as vid','partylists.partylists','candidates.picture')
+            ->orderBy('positions.position_order')
             ->get();
 
-        return view('client.dashboard2', $data, compact('candidates'));
+        return view('client.dashboard3', $data, compact('candidates'));
     }
 
     public function check(Request $request)
@@ -72,6 +82,10 @@ class UserController extends Controller
         
         if($save)
         {
+            $id=DB::select("SHOW TABLE STATUS LIKE 'images'");
+            $next_id=$id[0]->Auto_increment;
+        
+
             Image::create([
                     'image_name' => $fileName,
                     'voter_id'      => $request->voter_id,
@@ -81,9 +95,10 @@ class UserController extends Controller
                 {
                     $insert = [
                         'voter_id' => $request->voter_id,
-                        'candidate_id' => $request->check[$key]
+                        'candidate_id' => $request->check[$key],
+                        'images_id' => $next_id
                     ];
-                    Votes::insert($insert);
+                    Votes::create($insert);
                 }
             if(session()->has('LoggedUser'))
             {

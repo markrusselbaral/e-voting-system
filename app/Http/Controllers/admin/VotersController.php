@@ -10,6 +10,8 @@ use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\VotersImport;
 use App\Exports\VotersExport;
+use App\Models\College;
+use App\Models\Department;
 
 class VotersController extends Controller
 {
@@ -19,11 +21,15 @@ class VotersController extends Controller
         $voters = DB::table('voter_logins')
                 ->join('course_sections', 'voter_logins.course_section_id', '=', 'course_sections.id')
                 ->join('statuses', 'voter_logins.status_id', '=', 'statuses.id')
-                ->select('voter_logins.ismis_id','voter_logins.fname','voter_logins.lname','voter_logins.course_section_id','voter_logins.status_id','voter_logins.id as voter_id','course_sections.*','statuses.*')
+                ->join('departments', 'departments.id', '=', 'voter_logins.department_id')
+                ->join('colleges', 'colleges.id', '=', 'voter_logins.college_id')
+                ->select('voter_logins.ismis_id','voter_logins.fname','voter_logins.lname','voter_logins.course_section_id','voter_logins.status_id','voter_logins.id as voter_id','course_sections.*','statuses.*','departments.*','colleges.*')
                 ->get();
 
         $course_sections = Course_section::All();
-        return view('admin.voters',compact('voters','course_sections'));
+        $department = Department::All();
+        $college = College::All();
+        return view('admin.voters',compact('voters','course_sections','department','college'));
     }
 
 
@@ -34,7 +40,9 @@ class VotersController extends Controller
             'fname' => $request->fname,
             'lname' => $request->lname,
             'course_section_id' => $request->course_section,
-            'status_id' => 1
+            'status_id' => 1,
+            'department_id' => $request->department,
+            'college_id' => $request->college
         ]);
 
         return redirect()->route('index')->with('save','Voter Added Successfully');
@@ -58,7 +66,9 @@ class VotersController extends Controller
             'fname' => $request->update_fname,
             'lname' => $request->update_lname,
             'course_section_id' => $request->update_course_section,
-            'status_id' => 1 
+            'status_id' => 1,
+            'department_id' => $request->edit_department,
+            'college_id' => $request->edit_college
 
         ]);
         return redirect()->route('index')->with('update','Voter Deleted Successfully');;

@@ -91,7 +91,9 @@ Route::get('/candidates',[CandidatesController::class,'index'])->name('candidate
 Route::post('/candidates-search',[CandidatesController::class,'search'])->name('candidate-search');
 Route::post('/candidates',[CandidatesController::class,'save'])->name('candidate-save');
 Route::get('/edit-candidate/{id}', [CandidatesController::class,'edit'])->name('candidate-edit');
-
+Route::put('/candidates', [CandidatesController::class,'update'])->name('candidate-update');
+Route::delete('/candidates', [CandidatesController::class,'delete'])->name('candidate-delete');
+Route::delete('/deleteAllCandidate', [CandidatesController::class,'deleteAll'])->name('candidate-deleteAll');
 
 
 
@@ -109,5 +111,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
 
 
-
+Route::get('/dash', function () {
+    return view('client.dashboard3');
+});
 
