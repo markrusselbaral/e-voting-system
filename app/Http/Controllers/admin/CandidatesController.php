@@ -9,6 +9,8 @@ use DB;
 use App\Models\VoterLogin;
 use App\Models\Partylist;
 use App\Models\Position;
+use App\Models\Department;
+use App\Models\College;
 use Illuminate\Support\Facades\File;
 
 class CandidatesController extends Controller
@@ -18,16 +20,20 @@ class CandidatesController extends Controller
 
         $position = Position::select('id','position')->get();
         $partylist = Partylist::select('id','partylists')->get();
+        $department = Department::select('id','departments')->get();
+        $college = College::select('id','colleges')->get();
         $candidate = DB::table('candidates')
 
             ->join('positions', 'candidates.position_id', '=', 'positions.id')
             ->join('voter_logins', 'candidates.voters_id', '=', 'voter_logins.id')
             ->join('partylists', 'candidates.partylist_id', '=', 'partylists.id')
-            ->select('positions.position','voter_logins.ismis_id','candidates.id as cid','voter_logins.fname','voter_logins.lname','partylists.partylists','candidates.picture')
+            ->join('departments', 'departments.id', '=', 'candidates.department_id')
+            ->join('colleges', 'colleges.id', '=', 'candidates.college_id')
+            ->select('positions.position','voter_logins.ismis_id','candidates.id as cid','voter_logins.fname','voter_logins.lname','partylists.partylists','candidates.picture','departments.*','colleges.*')
             ->orderBy('positions.id')
             ->get();
 
-           return view('admin.candidates', compact('candidate','partylist','position'));
+           return view('admin.candidates', compact('candidate','partylist','position','department','college'));
             // return $candidate;
     }
 
@@ -46,6 +52,8 @@ class CandidatesController extends Controller
                 'voters_id' => $request->voters_id,
                 'position_id' => $request->position_id,
                 'partylist_id' => $request->partylist_id,
+                'department_id' => $request->department_id,
+                'college_id' => $request->college_id,
                 'picture' => $imageName
 
             ]);
@@ -59,7 +67,9 @@ class CandidatesController extends Controller
      public function search(Request $request)
     {
 
-            $candidate = VoterLogin::select('id','fname','lname','ismis_id')
+        $candidate = VoterLogin::join('departments', 'departments.id', '=', 'voter_logins.department_id')
+                        ->join('colleges', 'colleges.id', '=', 'voter_logins.college_id')
+                        ->select('voter_logins.id','voter_logins.fname','voter_logins.lname','voter_logins.ismis_id','departments.departments','colleges.colleges','voter_logins.department_id','voter_logins.college_id')
                         ->where('ismis_id',$request['inputSearch'])
                         ->get();
                          echo $candidate;
@@ -87,6 +97,8 @@ class CandidatesController extends Controller
 
        $candidate->position_id = $request->edit_position_id;
        $candidate->partylist_id = $request->edit_partylist_id;
+       $candidate->department_id = $request->edit_department_id;
+       $candidate->college_id = $request->edit_college_id;
        
 
 

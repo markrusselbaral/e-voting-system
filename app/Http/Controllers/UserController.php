@@ -35,6 +35,7 @@ class UserController extends Controller
             ->get();
 
         return view('client.dashboard3', $data, compact('candidates'));
+            // return $candidates;
     }
 
     public function check(Request $request)

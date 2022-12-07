@@ -21,6 +21,10 @@ return new class extends Migration
             $table->foreign('position_id')->references('id')->on('positions');
             $table->unsignedBigInteger('partylist_id')->nullable();
             $table->foreign('partylist_id')->references('id')->on('partylists');
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->foreign('department_id')->references('id')->on('departments');
+            $table->unsignedBigInteger('college_id')->nullable();
+            $table->foreign('college_id')->references('id')->on('colleges');
             $table->string('picture');
             $table->timestamps();
         });

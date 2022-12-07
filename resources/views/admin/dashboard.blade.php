@@ -109,25 +109,19 @@
                                           <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                             <thead>
                                             <tr>
-                                                <th>Candidates</th>
-                                                <th>Collge</th>
-                                                <th>Department</th>
-                                                <th>Course & Sectiom</th>
-                                                <th>Vote Counts</th>
+                                                <th>Fullname</th>
+                                                <th>VoteCounts</th>
                                             </tr>
                                             </thead>
 
 
                                             <tbody>
-                                            
+                                            @foreach($votes as $value)
                                             <tr>
-                                                <td>asd</td>
-                                                <td>asd</td>
-                                                <td>asd</td>
-                                                <td>asd</td>
-                                                <td>asd</td>
-                                                
+                                                <td>{{ $value->fname }} {{ $value->lname }}</td>
+                                                <td>{{ $value->votecount }}</td>   
                                             </tr>
+                                            @endforeach
                                             
                                             </tbody>
                                             </table>

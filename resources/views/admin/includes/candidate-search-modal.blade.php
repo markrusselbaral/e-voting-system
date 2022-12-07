@@ -29,6 +29,10 @@
                         $('#voters_id').val(d[0].id)
                         $('#firstname').val(d[0].fname)
                         $('#lastname').val(d[0].lname)
+                        $('#department').val(d[0].departments)
+                        $('#college').val(d[0].colleges)
+                        $('#department_id').val(d[0].department_id)
+                        $('#college_id').val(d[0].college_id)
                         $('.otherInputs').show();
                         console.log(d);
                     }

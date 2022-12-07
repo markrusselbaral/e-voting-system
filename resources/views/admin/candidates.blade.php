@@ -89,6 +89,24 @@
                     </select>
                 </div>
                  <div class="mb-3">
+                    <label for="edit_department" class="form-label">Department</label>
+                    <select class="form-select mb-3" id="edit_department" name="edit_department_id">
+                        <option selected>...</option>
+                        @foreach($department as $value)
+                        <option value="{{ $value->id }}">{{ $value->departments }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="edit_college" class="form-label">College</label>
+                    <select class="form-select mb-3" id="edit_college" name="edit_college_id">
+                        <option selected>...</option>
+                        @foreach($college as $value)
+                        <option value="{{ $value->id }}">{{ $value->colleges }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                 <div class="mb-3">
                     <label for="picture" class="form-label">Picture</label>
                     <input type="file" class="form-control" id="picture" placeholder="Enter picture" name="picture_edit">
                 </div>
@@ -132,6 +150,16 @@
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Lastname</label>
                     <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname" disabled>
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="department_id" id="department_id">
+                    <label for="department" class="form-label">Department</label>
+                    <input type="text" class="form-control" id="department" placeholder="Enter department" name="department" disabled>
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="college_id" id="college_id">
+                    <label for="college" class="form-label">College</label>
+                    <input type="text" class="form-control" id="college" placeholder="Enter college" name="college" disabled>
                 </div>
                 <div class="mb-3">
                     <label for="position" class="form-label">Position</label>
@@ -242,7 +270,9 @@
                                                 <th>Position</th>
                                                 <th>ISMIS ID</th>
                                                 <th>Fullname</th>
-                                                <th>Partylists</th>
+                                                <th>Partylist</th>
+                                                <th>Department</th>
+                                                <th>College</th>
                                                 <th>Picture</th>
                                                 <th>Action</th>
                                             </tr>
@@ -256,6 +286,9 @@
                                                 <td>{{ $value->ismis_id }}</td>
                                                 <td>{{ $value->fname }} {{ $value->lname }}</td>
                                                 <td>{{ $value->partylists }}</td>
+                                                <td>{{ $value->departments }}</td>
+                                                <td>{{ $value->colleges }}</td>
+                                                
                                                 <td><img src="{{ asset('uploads/image3/'.$value->picture) }}" style="border-radius: 100%; width: 40px; height: 40px;"></td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
