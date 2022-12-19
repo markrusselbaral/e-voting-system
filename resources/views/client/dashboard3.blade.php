@@ -39,18 +39,66 @@
       </div>
 
 
+      <!-- Modal -->
+                <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="img-candidates" style="margin-bottom: 2rem;">
+                            <img src="" style="width: 100px;" id="candidate-picture">
+                        </div>
+                        <div class="img-candidates">
+                            <label style="font-size: .8rem">Fullname</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="fullname"></p>
+                        </div>
+                        <div class="img-candidates">
+                            <label style="font-size: .8rem">Position</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="position"></p>
+                        </div>
+                        <div class="img-candidates">
+                            <label style="font-size: .8rem">Party</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="partylists"></p>
+                        </div>
+                        <div class="img-candidates">
+                            <label style="font-size: .8rem">Course & Section</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="course_sections"></p>
+                        </div>
+                         <div class="img-candidates">
+                            <label style="font-size: .8rem">Department</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="departments"></p>
+                        </div>
+                         <div class="img-candidates">
+                            <label style="font-size: .8rem">College</label>
+                            <p style="font-weight: bold; font-size: 1.3rem;" id="colleges"></p>
+                        </div>
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
     <div class="container" style="background-color: white;">
         @foreach($candidates as $candidate)
-      <span style="font-size: 1.5em;background-color: white;" class="posName">{{ $candidate->position }}</span>
-      <!-- <span style="background-color:white;" class="posName">Select only 1 candidate</span> -->
+              <span style="font-size: 1.5em;background-color: white;" class="posName">{{ $candidate->position }}</span>
+              
 
-      <div class="candidates">
-        <img src="{{ asset('uploads/image3/'.$candidate->picture) }}">
-        <label style="background-color: white;">{{ $candidate->fname }}</label>
-        <button type="button">Details</button>
-        <input type="checkbox" name="check[]" value="{{ $candidate->vid }}">
-      </div>
-      @endforeach
+              <div class="candidates">
+                <img src="{{ asset('uploads/image3/'.$candidate->picture) }}">
+                <label style="background-color: white;">{{ $candidate->fname }}</label>
+                <button type="button" class="editbtn" value="{{ $candidate->id }}">Details</button>
+                <input type="checkbox" name="check[]" value="{{ $candidate->id }}">
+              </div>
+
+
+               
+        @endforeach
 
     </div>
 
@@ -102,6 +150,8 @@
         } );
     }
 </script>
+
+@include('admin.includes.voters-show-modal')
 </body>
 </html>
 

@@ -25,17 +25,10 @@ class UserController extends Controller
         // $candidates = Candidate::join('positions', 'candidates.position_id', '=', 'positions.id')->select('positions.*','candidates.*')->orderBy('positions.id')
         //     ->get();
 
-         $candidates = DB::table('candidates')
-
-            ->join('positions', 'candidates.position_id', '=', 'positions.id')
-            ->join('voter_logins', 'candidates.voters_id', '=', 'voter_logins.id')
-            ->join('partylists', 'candidates.partylist_id', '=', 'partylists.id')
-            ->select('positions.position','voter_logins.ismis_id','candidates.id as cid','voter_logins.fname','voter_logins.lname','voter_logins.id as vid','partylists.partylists','candidates.picture')
-            ->orderBy('positions.position_order')
-            ->get();
+          $candidates = Candidate::orderBy('position')->get();
 
         return view('client.dashboard3', $data, compact('candidates'));
-            // return $candidates;
+            // return $candidate;
     }
 
     public function check(Request $request)
@@ -94,12 +87,14 @@ class UserController extends Controller
 
                 foreach($request->check as $key=>$name)
                 {
+                   
                     $insert = [
                         'voter_id' => $request->voter_id,
                         'candidate_id' => $request->check[$key],
-                        'images_id' => $next_id
+                        'images_id' => $next_id,
                     ];
                     Votes::create($insert);
+                
                 }
             if(session()->has('LoggedUser'))
             {
@@ -107,5 +102,17 @@ class UserController extends Controller
                 return redirect()->route('login');
             }
         } 
+    }
+
+    public function edit($id)
+    {
+
+        $candidates = Candidate::find($id);
+
+        return response()->json([
+            'status'=>200,
+            'candidates' =>$candidates,
+        ]);
+
     }
 }

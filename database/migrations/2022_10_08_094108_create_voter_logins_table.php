@@ -18,14 +18,10 @@ return new class extends Migration
             $table->string('ismis_id');
             $table->string('fname');
             $table->string('lname');
-            $table->unsignedBigInteger('course_section_id')->nullable();
-            $table->foreign('course_section_id')->references('id')->on('course_sections');
-            $table->unsignedBigInteger('status_id')->nullable();
-            $table->foreign('status_id')->references('id')->on('statuses');
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->foreign('department_id')->references('id')->on('departments');
-            $table->unsignedBigInteger('college_id')->nullable();
-            $table->foreign('college_id')->references('id')->on('colleges');
+            $table->string('course_section');
+            $table->string('status');
+            $table->string('department');
+            $table->string('college');
             $table->timestamps();
         });
     }

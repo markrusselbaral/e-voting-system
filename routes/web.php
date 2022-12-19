@@ -100,6 +100,7 @@ Route::delete('/deleteAllCandidate', [CandidatesController::class,'deleteAll'])-
 // voters
 Route::post('login',[UserController::class,'check'])->name('voter.login');
 Route::get('logout',[UserController::class,'logout'])->name('logout');
+Route::get('/show-candidate/{id}', [UserController::class,'edit'])->name('course-section-edit');
 
 Route::group(['middleware'=>['AuthCheck']], function(){
 	Route::get('/',[UserController::class,'login'])->name('login');
@@ -115,3 +116,6 @@ Route::get('/dash', function () {
     return view('client.dashboard3');
 });
 
+
+
+Route::get('query',[DashboardController::class,'sample'])->name('query');

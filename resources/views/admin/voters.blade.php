@@ -89,7 +89,7 @@
                     <select class="form-select mb-3" id="course_section" name="update_course_section">
                         <option selected>...</option>
                         @foreach($course_sections as $value)
-                        <option value="{{ $value->id }}">{{ $value->course_sections }}</option>
+                        <option value="{{ $value->course_sections }}">{{ $value->course_sections }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -98,7 +98,7 @@
                     <select class="form-select mb-3" id="edit_department" name="edit_department">
                         <option selected>...</option>
                         @foreach($department as $value)
-                        <option value="{{ $value->id }}">{{ $value->departments }}</option>
+                        <option value="{{ $value->departments }}">{{ $value->departments }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -108,7 +108,7 @@
                     <select class="form-select mb-3" id="edit_college" name="edit_college">
                         <option selected>...</option>
                         @foreach($college as $value)
-                        <option value="{{ $value->id }}">{{ $value->colleges }}</option>
+                        <option value="{{ $value->colleges }}">{{ $value->colleges }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -156,7 +156,7 @@
                     <select class="form-select mb-3" id="course_section" name="course_section">
                         <option selected>...</option>
                         @foreach($course_sections as $value)
-                        <option value="{{ $value->id }}">{{ $value->course_sections }}</option>
+                        <option value="{{ $value->course_sections }}">{{ $value->course_sections }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -165,7 +165,7 @@
                     <select class="form-select mb-3" id="department" name="department">
                         <option selected>...</option>
                         @foreach($department as $value)
-                        <option value="{{ $value->id }}">{{ $value->departments }}</option>
+                        <option value="{{ $value->departments }}">{{ $value->departments }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -175,7 +175,7 @@
                     <select class="form-select mb-3" id="college" name="college">
                         <option selected>...</option>
                         @foreach($college as $value)
-                        <option value="{{ $value->id }}">{{ $value->colleges }}</option>
+                        <option value="{{ $value->colleges }}">{{ $value->colleges }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -285,9 +285,9 @@
                                             <tr>
                                                 <td>{{ $value->ismis_id }}</td>
                                                 <td>{{ $value->fname }} {{ $value->lname }}</td>
-                                                <td>{{ $value->course_sections }}</td>
-                                                <td>{{ $value->departments }}</td>
-                                                <td>{{ $value->colleges }}</td>
+                                                <td>{{ $value->course_section }}</td>
+                                                <td>{{ $value->department }}</td>
+                                                <td>{{ $value->college }}</td>
                                                 <td>
                                                     <span class="badge bg-danger">{{ $value->status }}</span>
                                                 </td>
@@ -295,9 +295,9 @@
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 
                                                             
-                                                            <button class="editbtn" value="{{ $value->voter_id }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
+                                                            <button class="editbtn" value="{{ $value->id }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
 
-                                                            <button class="deletebtn" value="{{ $value->voter_id }}" style="border: none; background-color: transparent;">
+                                                            <button class="deletebtn" value="{{ $value->id }}" style="border: none; background-color: transparent;">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </button>
                                                 </td>

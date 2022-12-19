@@ -13,9 +13,9 @@
             $('#ismis_id').val(response.voters.ismis_id)
             $('#Firstname').val(response.voters.fname)
             $('#Lastname').val(response.voters.lname)
-            $('#course_section').val(response.voters.course_section_id) 
-            $('#edit_department').val(response.voters.department_id)  
-            $('#edit_college').val(response.voters.college_id)   
+            $('#course_section').val(response.voters.course_section) 
+            $('#edit_department').val(response.voters.department)  
+            $('#edit_college').val(response.voters.college)   
          }
      });
     });

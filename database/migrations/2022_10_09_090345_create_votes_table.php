@@ -18,9 +18,17 @@ return new class extends Migration
             $table->unsignedBigInteger('voter_id')->nullable();
             $table->foreign('voter_id')->references('id')->on('voter_logins');
             $table->unsignedBigInteger('candidate_id')->nullable();
-            $table->foreign('candidate_id')->references('id')->on('voter_logins');
+            $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->unsignedBigInteger('images_id')->nullable();
             $table->foreign('images_id')->references('id')->on('images');
+            // $table->unsignedBigInteger('candidate-details_id')->nullable();
+            // $table->foreign('position_id')->references('id')->on('positions');
+            // $table->unsignedBigInteger('department_id')->nullable();
+            // $table->foreign('department_id')->references('id')->on('departments');
+            // $table->unsignedBigInteger('college_id')->nullable();
+            // $table->foreign('college_id')->references('id')->on('colleges');
+            // $table->unsignedBigInteger('coursesection_id')->nullable();
+            // $table->foreign('coursesection_id')->references('id')->on('course_sections');
             $table->timestamps();
         });
     }

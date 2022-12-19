@@ -3,6 +3,66 @@
 @section('css')
 
 	@include('admin.includes.voters-css')
+    <style>
+        .cardCon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*border: 1px solid black;*/
+            flex-wrap: wrap;
+        }
+
+        .cards{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            /*border: 1px solid black;*/
+            margin-bottom: 2rem;
+        }
+
+        .header{
+            width: 70%;
+            height: 5vh;
+            /*border: 1px solid black;*/
+            background-color: #6169D0;
+            color: white;
+            display: flex;
+            padding-left: 1rem;
+            align-items: center;
+        }
+        .cbody{
+            height: 20vh;
+            width: 70%;
+            border: 1px solid #D7DDD7;
+            background-color: #fff;
+            padding-top: 2rem;
+        }
+
+        .cname{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*border: 1px solid black;*/
+        }
+
+        .cname span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cdetails{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: .5rem;
+            /*align-items: center;*/
+        }
+
+        
+    </style>
 
 @endsection
 
@@ -106,11 +166,16 @@
                         <!-- end row-->
 
                         <div class="table-responsive">
-                                          <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                          <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100" data-ordering="false">
                                             <thead>
                                             <tr>
-                                                <th>Fullname</th>
-                                                <th>VoteCounts</th>
+                                                <th data-orderable="false">Fullname</th>
+                                                <th data-orderable="false">Position</th>
+                                                <th data-orderable="false">Department</th>
+                                                <th data-orderable="false">College</th>
+                                                <th data-orderable="false">Course & Section</th>
+                                                <th data-orderable="false">Partylist</th>
+                                                <th data-orderable="false">Vote Counts</th>
                                             </tr>
                                             </thead>
 
@@ -119,6 +184,11 @@
                                             @foreach($votes as $value)
                                             <tr>
                                                 <td>{{ $value->fname }} {{ $value->lname }}</td>
+                                                <td>{{ $value->position }}</td>
+                                                <td>{{ $value->department }}</td>
+                                                <td>{{ $value->college }}</td>
+                                                <td>{{ $value->course_section }}</td>
+                                                <td>{{ $value->partylist }}</td>
                                                 <td>{{ $value->votecount }}</td>   
                                             </tr>
                                             @endforeach
@@ -127,22 +197,30 @@
                                             </table>
                                         </div>
 
+                                        <div class="cardCon">
+                                            @foreach($votes as $value)
+                                            <div class="cards">
+                                                <div class="header">{{ $value->position }}</div>
+                                                <div class="cbody">
+                                                    <div class="cdetails">
+                                                        <div class="cname">
+                                                            <span style="width: 50%;">Name</span>
+                                                            <span style="width: 50%;">Vote Counts</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cdetails">
+                                                        <div class="cname">
+                                                            <span style="width: 50%; font-weight: bold;">{{ $value->fname }} {{ $value->lname }}</span>
+                                                            <span style="width: 50%; font-weight: bold; color: green;">{{ $value->votecount }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            
+                                            
+                                        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-                        
-
-
-                        
                     </div> <!-- container -->
 
                 </div> <!-- content -->
@@ -165,5 +243,15 @@
 
 @section('js')
 	 @include('admin.includes.voters-js')
+     <script>
+  var seen = {};
+  $('.header').each(function(){
+    var txt = $(this).text();
+    if(seen[txt])
+      $(this).remove();
+    else
+      seen[txt] = true;
+  });
+</script>
  
 @endsection

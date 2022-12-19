@@ -75,7 +75,7 @@
                     <select class="form-select mb-3" name="edit_position_id" id="edit_position">
                         <option selected>...</option>
                         @foreach($position as $value)
-                        <option value="{{ $value->id }}">{{ $value->position }}</option>
+                        <option value="{{ $value->position }}">{{ $value->position }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -84,25 +84,7 @@
                     <select class="form-select mb-3" id="edit_partylist" name="edit_partylist_id">
                         <option selected>...</option>
                         @foreach($partylist as $value)
-                        <option value="{{ $value->id }}">{{ $value->partylists }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                 <div class="mb-3">
-                    <label for="edit_department" class="form-label">Department</label>
-                    <select class="form-select mb-3" id="edit_department" name="edit_department_id">
-                        <option selected>...</option>
-                        @foreach($department as $value)
-                        <option value="{{ $value->id }}">{{ $value->departments }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="edit_college" class="form-label">College</label>
-                    <select class="form-select mb-3" id="edit_college" name="edit_college_id">
-                        <option selected>...</option>
-                        @foreach($college as $value)
-                        <option value="{{ $value->id }}">{{ $value->colleges }}</option>
+                        <option value="{{ $value->partylists }}">{{ $value->partylists }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -140,43 +122,49 @@
                 <div class="mb-3">
                     <label for="ismis-id" class="form-label">Search by ISMIS ID</label>
                     <input type="search" class="form-control" id="inputSearch" placeholder="Enter ISMIS ID" name="inputSearch">
-                    <input type="hidden" class="form-control" id="voters_id" name="voters_id">
                 </div>
                 <div class="otherInputs" style="display: none;">
                 <div class="mb-3">
                     <label for="firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="firstname" disabled>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="" disabled>
+                    <input type="hidden" name="firstname" id="fname">
                 </div>  
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="lastname" disabled>
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname" name="" disabled>
+                    <input type="hidden" name="lastname" id="lname">
                 </div>
                 <div class="mb-3">
-                    <input type="hidden" name="department_id" id="department_id">
+                    <label for="course_section" class="form-label">Course & Section</label>
+                    <input type="text" class="form-control" id="course_section" placeholder="Enter Course & Section" name="" disabled>
+                    <input type="hidden" name="course" id="course">
+                </div>
+                <div class="mb-3">
                     <label for="department" class="form-label">Department</label>
-                    <input type="text" class="form-control" id="department" placeholder="Enter department" name="department" disabled>
+                    <input type="text" class="form-control" id="department" placeholder="Enter department" name="" disabled>
+                    <input type="hidden" name="department" id="depart">
                 </div>
                 <div class="mb-3">
-                    <input type="hidden" name="college_id" id="college_id">
                     <label for="college" class="form-label">College</label>
-                    <input type="text" class="form-control" id="college" placeholder="Enter college" name="college" disabled>
+                    <input type="text" class="form-control" id="college" placeholder="Enter college" name="" disabled>
+                    <input type="hidden" name="college" id="coll">
                 </div>
                 <div class="mb-3">
                     <label for="position" class="form-label">Position</label>
-                    <select class="form-select mb-3" id="position" name="position_id">
+                    <select class="form-select mb-3" id="position" name="position">
                         <option selected>...</option>
                         @foreach($position as $value)
-                        <option value="{{ $value->id }}">{{ $value->position }}</option>
+                        <option value="{{ $value->position }}">{{ $value->position }}</option>
                         @endforeach
                     </select>
 
                 </div>
                 <div class="mb-3">
                     <label for="partylist" class="form-label">Partylist</label>
-                    <select class="form-select mb-3" id="partylist" name="partylist_id">
+                    <select class="form-select mb-3" id="partylist" name="partylist">
                         <option selected>...</option>
                         @foreach($partylist as $value)
-                        <option value="{{ $value->id }}">{{ $value->partylists }}</option>
+                        <option value="{{ $value->partylists }}">{{ $value->partylists }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -271,6 +259,7 @@
                                                 <th>ISMIS ID</th>
                                                 <th>Fullname</th>
                                                 <th>Partylist</th>
+                                                <th>Course & Section</th>
                                                 <th>Department</th>
                                                 <th>College</th>
                                                 <th>Picture</th>
@@ -285,18 +274,19 @@
                                                 <td>{{ $value->position }}</td>
                                                 <td>{{ $value->ismis_id }}</td>
                                                 <td>{{ $value->fname }} {{ $value->lname }}</td>
-                                                <td>{{ $value->partylists }}</td>
-                                                <td>{{ $value->departments }}</td>
-                                                <td>{{ $value->colleges }}</td>
+                                                <td>{{ $value->partylist }}</td>
+                                                <td>{{ $value->course_section }}</td>
+                                                <td>{{ $value->department }}</td>
+                                                <td>{{ $value->college }}</td>
                                                 
                                                 <td><img src="{{ asset('uploads/image3/'.$value->picture) }}" style="border-radius: 100%; width: 40px; height: 40px;"></td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 
                                                             
-                                                            <button class="editbtn" value="{{ $value->cid }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
+                                                            <button class="editbtn" value="{{ $value->id }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
 
-                                                            <button class="deletebtn" value="{{ $value->cid }}" style="border: none; background-color: transparent;">
+                                                            <button class="deletebtn" value="{{ $value->id }}" style="border: none; background-color: transparent;">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </button>
                                                 </td>
