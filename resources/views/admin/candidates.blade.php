@@ -75,7 +75,7 @@
                     <select class="form-select mb-3" name="edit_position_id" id="edit_position">
                         <option selected>...</option>
                         @foreach($position as $value)
-                        <option value="{{ $value->position }}">{{ $value->position }}</option>
+                        <option value="{{ $value->id }}">{{ $value->position }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -154,7 +154,7 @@
                     <select class="form-select mb-3" id="position" name="position">
                         <option selected>...</option>
                         @foreach($position as $value)
-                        <option value="{{ $value->position }}">{{ $value->position }}</option>
+                        <option value="{{ $value->id }}">{{ $value->position }}</option>
                         @endforeach
                     </select>
 
@@ -284,9 +284,9 @@
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 
                                                             
-                                                            <button class="editbtn" value="{{ $value->id }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
+                                                            <button class="editbtn" value="{{ $value->cid }}" style="border: none; background-color: transparent;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a></button>
 
-                                                            <button class="deletebtn" value="{{ $value->id }}" style="border: none; background-color: transparent;">
+                                                            <button class="deletebtn" value="{{ $value->cid }}" style="border: none; background-color: transparent;">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                                             </button>
                                                 </td>

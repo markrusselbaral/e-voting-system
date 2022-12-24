@@ -10,6 +10,7 @@
             align-items: center;
             /*border: 1px solid black;*/
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .cards{
@@ -164,39 +165,7 @@
                             </div> <!-- end col-->
                         </div>
                         <!-- end row-->
-
-                        <div class="table-responsive">
-                                          <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100" data-ordering="false">
-                                            <thead>
-                                            <tr>
-                                                <th data-orderable="false">Fullname</th>
-                                                <th data-orderable="false">Position</th>
-                                                <th data-orderable="false">Department</th>
-                                                <th data-orderable="false">College</th>
-                                                <th data-orderable="false">Course & Section</th>
-                                                <th data-orderable="false">Partylist</th>
-                                                <th data-orderable="false">Vote Counts</th>
-                                            </tr>
-                                            </thead>
-
-
-                                            <tbody>
-                                            @foreach($votes as $value)
-                                            <tr>
-                                                <td>{{ $value->fname }} {{ $value->lname }}</td>
-                                                <td>{{ $value->position }}</td>
-                                                <td>{{ $value->department }}</td>
-                                                <td>{{ $value->college }}</td>
-                                                <td>{{ $value->course_section }}</td>
-                                                <td>{{ $value->partylist }}</td>
-                                                <td>{{ $value->votecount }}</td>   
-                                            </tr>
-                                            @endforeach
-                                            
-                                            </tbody>
-                                            </table>
-                                        </div>
-
+ 
                                         <div class="cardCon">
                                             @foreach($votes as $value)
                                             <div class="cards">
@@ -208,18 +177,19 @@
                                                             <span style="width: 50%;">Vote Counts</span>
                                                         </div>
                                                     </div>
+                                                    @foreach($value->votes as $vote)
                                                     <div class="cdetails">
                                                         <div class="cname">
-                                                            <span style="width: 50%; font-weight: bold;">{{ $value->fname }} {{ $value->lname }}</span>
-                                                            <span style="width: 50%; font-weight: bold; color: green;">{{ $value->votecount }}</span>
+                                                            <span style="width: 50%; font-weight: bold;">{{ $vote->fname }} {{ $vote->lname }}</span>
+                                                            <span style="width: 50%; font-weight: bold; color: green;">{{ $vote->votecount }}</span>
                                                         </div>
                                                     </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
-                                            @endforeach
-                                            
-                                            
+                                             @endforeach
                                         </div>
+                                       
 
                     </div> <!-- container -->
 

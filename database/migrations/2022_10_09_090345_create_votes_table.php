@@ -19,8 +19,10 @@ return new class extends Migration
             $table->foreign('voter_id')->references('id')->on('voter_logins');
             $table->unsignedBigInteger('candidate_id')->nullable();
             $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->unsignedBigInteger('images_id')->nullable();
-            $table->foreign('images_id')->references('id')->on('images');
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->foreign('position_id')->references('id')->on('positions');
+            // $table->unsignedBigInteger('images_id')->nullable();
+            // $table->foreign('images_id')->references('id')->on('images');
             // $table->unsignedBigInteger('candidate-details_id')->nullable();
             // $table->foreign('position_id')->references('id')->on('positions');
             // $table->unsignedBigInteger('department_id')->nullable();

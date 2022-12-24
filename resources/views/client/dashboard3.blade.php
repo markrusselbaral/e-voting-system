@@ -84,24 +84,24 @@
                   </div>
                 </div>
 
+@foreach($candidates as $candidate)
     <div class="container" style="background-color: white;">
-        @foreach($candidates as $candidate)
               <span style="font-size: 1.5em;background-color: white;" class="posName">{{ $candidate->position }}</span>
               
-
+              @foreach($candidate->candidate as $value)
               <div class="candidates">
-                <img src="{{ asset('uploads/image3/'.$candidate->picture) }}">
-                <label style="background-color: white;">{{ $candidate->fname }}</label>
-                <button type="button" class="editbtn" value="{{ $candidate->id }}">Details</button>
-                <input type="checkbox" name="check[]" value="{{ $candidate->id }}">
+                <img src="{{ asset('uploads/image3/'.$value->picture) }}">
+                <label style="background-color: white;">{{ $value->fname }}</label>
+                <button type="button" class="editbtn" value="{{ $value->id }}">Details</button>
+
+                <input type="checkbox" name="check[]" value="{{ $value->id }}" class="{{ $value->id }}">
+                <input type="checkbox" name="position[]" value="{{ $value->position_id }}" class="{{ $value->id }}" hidden>
+                <!-- <input type="text" name="check[]" value="{{ $value->id }}"> -->
+
               </div>
-
-
-               
-        @endforeach
-
+              @endforeach
     </div>
-
+ @endforeach
 
     <div class="vote">
       <input type="submit" value="Cast Vote" onClick="take_snapshot()">
@@ -122,7 +122,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.24/webcam.js"></script>
-<script>
+<!-- <script>
   var seen = {};
   $('.posName').each(function(){
     var txt = $(this).text();
@@ -131,7 +131,7 @@
     else
       seen[txt] = true;
   });
-</script>
+</script> -->
 
 <script>
     Webcam.set({
@@ -150,6 +150,18 @@
         } );
     }
 </script>
+@foreach($candidates as $candidate)
+@foreach($candidate->candidate as $value)
+<script>
+    var chk1{{ $value->id }} = $(".{{ $value->id }}");
+    var chk2{{ $value->id }} = $(".{{ $value->id }}");
+
+    chk1{{ $value->id }}.on('change', function(){
+        chk2{{ $value->id }}.prop('checked',this.checked);
+    });
+</script>
+@endforeach
+@endforeach
 
 @include('admin.includes.voters-show-modal')
 </body>

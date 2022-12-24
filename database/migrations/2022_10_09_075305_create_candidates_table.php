@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('course_section');
             $table->string('department');
             $table->string('college');
-            $table->string('position');
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->foreign('position_id')->references('id')->on('positions');
             $table->string('partylist');
             $table->string('picture');
             
-            // $table->unsignedBigInteger('voters_id')->nullable();
-            // $table->foreign('voters_id')->references('id')->on('voter_logins');
+            
             // $table->unsignedBigInteger('position_id')->nullable();
             // $table->foreign('position_id')->references('id')->on('positions');
             // $table->unsignedBigInteger('partylist_id')->nullable();

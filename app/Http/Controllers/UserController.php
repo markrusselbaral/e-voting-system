@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Candidate;
 use App\Models\Votes;
 use DB;
+use App\Models\Position;
 
 class UserController extends Controller
 {
@@ -25,10 +26,11 @@ class UserController extends Controller
         // $candidates = Candidate::join('positions', 'candidates.position_id', '=', 'positions.id')->select('positions.*','candidates.*')->orderBy('positions.id')
         //     ->get();
 
-          $candidates = Candidate::orderBy('position')->get();
+          // $candidates = Candidate::orderBy('position')->get();
+        $candidates = Position::with('candidate')->get(); 
 
         return view('client.dashboard3', $data, compact('candidates'));
-            // return $candidate;
+            // return $candidates;
     }
 
     public function check(Request $request)
@@ -61,37 +63,40 @@ class UserController extends Controller
 
     public function submit_vote(Request $request)
     {
-        $img = $request->image;
-        $folderPath = "uploads/";
+        // $img = $request->image;
+        // $folderPath = "uploads/";
         
-        $image_parts = explode(";base64,", $img);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
+        // $image_parts = explode(";base64,", $img);
+        // $image_type_aux = explode("image/", $image_parts[0]);
+        // $image_type = $image_type_aux[1];
         
-        $image_base64 = base64_decode($image_parts[1]);
-        $fileName = uniqid() . '.png';
+        // $image_base64 = base64_decode($image_parts[1]);
+        // $fileName = uniqid() . '.png';
         
-        $file = $folderPath . $fileName;
-        $save = Storage::put($file, $image_base64);
+        // $file = $folderPath . $fileName;
+        // $save = Storage::put($file, $image_base64);
         
-        if($save)
-        {
-            $id=DB::select("SHOW TABLE STATUS LIKE 'images'");
-            $next_id=$id[0]->Auto_increment;
+        // if($save)
+        // {
+        //     $id=DB::select("SHOW TABLE STATUS LIKE 'images'");
+        //     $next_id=$id[0]->Auto_increment;
         
 
-            Image::create([
-                    'image_name' => $fileName,
-                    'voter_id'      => $request->voter_id,
-            ]);
+        //     Image::create([
+        //             'image_name' => $fileName,
+        //             'voter_id'      => $request->voter_id,
+        //     ]);
 
                 foreach($request->check as $key=>$name)
                 {
                    
                     $insert = [
                         'voter_id' => $request->voter_id,
-                        'candidate_id' => $request->check[$key],
-                        'images_id' => $next_id,
+                        'candidate_id' => $name,
+                        'position_id' => $request->position[$key],
+                        // 'images_id' => $next_id,
+                        // 'check_id' =>$name,
+
                     ];
                     Votes::create($insert);
                 
@@ -101,7 +106,7 @@ class UserController extends Controller
                 session()->pull('LoggedUser');
                 return redirect()->route('login');
             }
-        } 
+        // } 
     }
 
     public function edit($id)

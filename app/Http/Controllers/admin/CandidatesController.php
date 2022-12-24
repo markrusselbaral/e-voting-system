@@ -22,7 +22,11 @@ class CandidatesController extends Controller
         $partylist = Partylist::select('id','partylists')->get();
         $department = Department::select('id','departments')->get();
         $college = College::select('id','colleges')->get();
-        $candidate = Candidate::all();
+        // $candidate = Candidate::all();
+        $candidate = DB::table('candidates')
+                    ->join('positions', 'positions.id', '=', 'candidates.position_id')
+                    ->select('candidates.*','positions.*','positions.id as pid','candidates.id as cid')
+                    ->get();
 
            return view('admin.candidates', compact('candidate','partylist','position','department','college'));
             // return $candidate;
@@ -46,7 +50,7 @@ class CandidatesController extends Controller
                 'course_section' => $request->course,
                 'department' => $request->department,
                 'college' => $request->college,
-                'position' => $request->position,
+                'position_id' => $request->position,
                 'partylist' => $request->partylist,
                 'picture' => $imageName
 
@@ -87,7 +91,7 @@ class CandidatesController extends Controller
 
        $candidate = Candidate::find($request->edit_candidate_id);
 
-       $candidate->position = $request->edit_position_id;
+       $candidate->position_id = $request->edit_position_id;
        $candidate->partylist = $request->edit_partylist_id;
        
 
