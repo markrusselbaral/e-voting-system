@@ -51,13 +51,13 @@ class CollegesController extends Controller
     public function delete(Request $request)
     {
         College::whereid($request->deleteid)->delete();
-        return redirect()->route('college-index')->with('delete','College Added Successfully');
+        return redirect()->route('college-index')->with('delete','College Deleted Successfully');
     }
 
 
     public function deleteAll()
     {
         DB::table('colleges')->delete();
-        return redirect()->route('college-index')->with('deleteAll','College Added Successfully');
+        return redirect()->route('college-index')->with('deleteAll','Colleges Deleted Successfully');
     }
 }

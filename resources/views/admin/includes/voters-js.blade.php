@@ -25,3 +25,15 @@
 
 
 
+ <!-- third party js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- third party js ends -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+
+<!-- demo app -->
+<!-- <script src="admin/assets/js/pages/demo.chartjs.js"></script> -->
+<!-- end demo js-->
+
+
+

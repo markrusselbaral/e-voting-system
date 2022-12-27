@@ -166,29 +166,28 @@
                         </div>
                         <!-- end row-->
  
-                                        <div class="cardCon">
-                                            @foreach($votes as $value)
-                                            <div class="cards">
-                                                <div class="header">{{ $value->position }}</div>
-                                                <div class="cbody">
-                                                    <div class="cdetails">
-                                                        <div class="cname">
-                                                            <span style="width: 50%;">Name</span>
-                                                            <span style="width: 50%;">Vote Counts</span>
-                                                        </div>
-                                                    </div>
-                                                    @foreach($value->votes as $vote)
-                                                    <div class="cdetails">
-                                                        <div class="cname">
-                                                            <span style="width: 50%; font-weight: bold;">{{ $vote->fname }} {{ $vote->lname }}</span>
-                                                            <span style="width: 50%; font-weight: bold; color: green;">{{ $vote->votecount }}</span>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
+                                       
+
+
+
+                        <div class="row">
+                            @foreach($votes as $value)
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mb-4">{{ $value->position }}</h4>
+
+                                        <div dir="ltr">
+                                            <div class="mt-3 chartjs-chart" style="height: 320px;">
+                                                <canvas id="{{ $value->id }}" data-colors="#fa5c7c,#727cf5"></canvas>
                                             </div>
-                                             @endforeach
                                         </div>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                            @endforeach
+                        </div>
                                        
 
                     </div> <!-- container -->
@@ -213,7 +212,8 @@
 
 @section('js')
 	 @include('admin.includes.voters-js')
-     <script>
+     @include('admin.includes.dashboard-chart')
+     <!-- <script>
   var seen = {};
   $('.header').each(function(){
     var txt = $(this).text();
@@ -222,6 +222,6 @@
     else
       seen[txt] = true;
   });
-</script>
+</script> -->
  
 @endsection
