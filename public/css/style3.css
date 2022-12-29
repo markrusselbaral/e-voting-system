@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Ubuntu:wght@300&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Jost', sans-serif;
+}
+
+header{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap:  .6rem;
+
+}
+
+.con1{
+	height: 5vh;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.con1{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap:  .9rem;
+	background-color: #424242;
+}
+
+.voteLogo{
+	width: 25px;
+}
+
+.con2{
+	border: 1px solid black;
+	width: 90%;
+	height: 8vh;
+	border-radius: 40px 5px 5px 40px;
+}
+
+.con2{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: #424242;
+}
+
+.span1{
+	width: 20%;
+}
+
+.span1{
+	position: absolute;
+	/*border: 1px solid black;*/
+	margin-right: 17.5rem;
+	
+}
+
+.span1{
+	padding-top: .7rem;
+}
+
+
+.bisuLogo{
+	width: 73px;
+}
+.span2{
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title{
+	margin-top: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+
+.positionContainer{
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	border: 1px solid black;
+	/*gap: 1rem;*/
+	margin-top: 2rem;
+}
+
+.position{
+	font-weight: bold;
+	padding-left: 1rem;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	color: white;
+	background-color: #424242;
+	width: 100%;
+	height: 5vh;
+}
+
+.canName{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.candidates{
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 95%;
+	height: 3rem;
+	margin-top: 1rem;
+
+	
+}
+
+.candidates span{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.details{
+	border-radius: 20px 20px;
+	width: 50px;
+	height: 25px;
+	border-style: none;
+	color: white;
+	background-color: #424242;
+}
+
+.buttonCon{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttonCon input{
+	margin-bottom: 2rem;
+	border-radius: 20px 20px;
+	font-weight: bold;
+	font-size: 1em;
+	height: 5vh;
+	margin-top: 2rem;
+	color: white;
+	width: 80%;
+	background-color: #424242;
+	border: none;
+
+
+}
+
+
+
+
+@media only screen and (min-width: 1200px) {
+  .bisuLogo {
+    width: 65px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .bisuLogo {
+    width: 65px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .bisuLogo {
+    width: 65px;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .bisuLogo {
+    width: 65px;
+  }
+}
+
+
+@media only screen and (min-width: 414px) {
+  .span1{
+	margin-right: 19.5rem;
+	
+	}
+}
+
+@media only screen and (min-width: 390px) {
+  .span1{
+	margin-right: 18.2rem;
+	
+	}
+}
+
+@media only screen and (min-width: 412px) {
+  .span1{
+	margin-right: 19.1rem;
+	
+	}
+}

@@ -87,6 +87,7 @@
 @foreach($candidates as $candidate)
     <div class="container" style="background-color: white;">
               <span style="font-size: 1.5em;background-color: white;" class="posName">{{ $candidate->position }}</span>
+              Select only {{ $candidate->position_order }} candidate(s)
               
               @foreach($candidate->candidate as $value)
               <div class="candidates">

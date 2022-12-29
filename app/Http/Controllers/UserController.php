@@ -29,7 +29,7 @@ class UserController extends Controller
           // $candidates = Candidate::orderBy('position')->get();
         $candidates = Position::with('candidate')->get(); 
 
-        return view('client.dashboard3', $data, compact('candidates'));
+        return view('client.dashboard4', $data, compact('candidates'));
             // return $candidates;
     }
 

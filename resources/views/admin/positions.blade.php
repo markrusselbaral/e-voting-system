@@ -110,7 +110,7 @@
                     <input type="text" class="form-control" id="position" placeholder="Enter Position" name="position">
                 </div>
                 <div class="mb-3">
-                    <label for="position-order" class="form-label">Position Order</label>
+                    <label for="position-order" class="form-label">Vote Limit(s)</label>
                     <input type="number" class="form-control" id="position-order" placeholder="Enter Position Order" name="position_order">
                 </div>
                 <!-- ENDCONTENT -->
