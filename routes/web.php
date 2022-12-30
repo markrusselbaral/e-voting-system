@@ -113,7 +113,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
 
 
 Route::get('/dash', function () {
-    return view('client.dashboard4');
+    return view('client.login2');
 });
 
 
