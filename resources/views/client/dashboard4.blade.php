@@ -5,8 +5,60 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style3.css') }}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #424242">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: white; font-weight: bold;">Candidate Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+      </div>
+      <div class="modal-body" style="background-color: #FEF9F9;">
+      	<div style="background-color: white; border: 1px solid #D7D1D1;">
+        <div class="banner_img">
+        	<img src="{{ asset('images/bbilar_banner.png') }}">
+        </div>
+        <div class="profile_img">
+        	<img src="{{ asset('images/image 1.png') }}" id="candidate-picture" style="width: 100px; height: 100px; border: 1px solid #D7D1D1; border-radius: 100%;">
+        	<span style="font-weight: bold; font-size: 1.3em;" id="fullname"></span>
+        </div>
+        
+        <div class="info">
+        	<div>
+        		<span style="font-weight: bold; color: #756F6F; font-size: .9em;">Position:</span>
+        		<span style="font-weight: bold; font-size: 1.2em" id="position"></span>
+        	</div>
+        	<div>
+        		<span style="font-weight: bold; color: #756F6F; font-size: .9em;">Party:</span>
+        		<span style="font-weight: bold; font-size: 1.2em" id="partylists"></span>
+        	</div>
+        </div>
+        <div class="info">
+        	<div>
+        		<span style="font-weight: bold; color: #756F6F; font-size: .9em;">Course & Section:</span>
+        		<span style="font-weight: bold; font-size: 1.2em" id="course_sections"></span>
+        	</div>
+        	<div>
+        		<span style="font-weight: bold; color: #756F6F; font-size: .9em;">Department:</span>
+        		<span style="font-weight: bold; font-size: 1.2em" id="departments"></span>
+        	</div>
+        </div>
+        <div class="info">
+        	<div>
+        		<span style="font-weight: bold; color: #756F6F; font-size: .9em;">College:</span>
+        		<span style="font-weight: bold; font-size: 1.2em" id="colleges"></span>
+        	</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Header -->
 <header>
 	<div class="con1">
@@ -45,7 +97,7 @@
 				{{ $value->fname }} {{ $value->lname }}
 			</span>
 			<span style="width: 20%">
-				<button type="button" class="details" value="{{ $value->id }}">Details</button>
+				<button type="button" class="details editbtn" value="{{ $value->id }}">Details</button>
 			</span>
 			<span style="width: 20%">
 				<input type="checkbox" name="check[]" value="{{ $value->id }}" class="{{ $value->id }} canCheck{{ $candidate->id }}" onclick="return limitCheck{{ $candidate->id }}()">
@@ -63,7 +115,9 @@
 </div>
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+@include('admin.includes.voters-show-modal')
 
 @foreach($candidates as $candidate)
 	@foreach($candidate->candidate as $value)

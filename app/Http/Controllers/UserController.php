@@ -112,7 +112,13 @@ class UserController extends Controller
     public function edit($id)
     {
 
-        $candidates = Candidate::find($id);
+        // $candidates = Candidate::find($id);
+
+        $candidates = DB::table('candidates')
+                    ->join('positions', 'positions.id', '=', 'candidates.position_id')
+                    ->select('positions.*','candidates.*','candidates.id as cid')
+                    ->where('candidates.id',$id)
+                    ->get();
 
         return response()->json([
             'status'=>200,

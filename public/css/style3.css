@@ -56,6 +56,7 @@ header{
 	position: absolute;
 	/*border: 1px solid black;*/
 	margin-right: 17.5rem;
+	margin-bottom: .4rem;
 	
 }
 
@@ -142,6 +143,7 @@ header{
 	border-style: none;
 	color: white;
 	background-color: #424242;
+	font-size: .7em;
 }
 
 .buttonCon{
@@ -167,7 +169,48 @@ header{
 }
 
 
+.banner_img{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 15vh;
+}
 
+.banner_img img{
+	width: 100%;
+	height: 20vh;
+}
+
+.profile_img{
+	padding-bottom: 5.3rem;
+	width: 100%;
+	height: 18vh;
+	/*position: absolute;*/
+	/*border: 1px solid black;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.info{
+	/*border: 1px solid black;*/
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.info div{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 @media only screen and (min-width: 1200px) {
   .bisuLogo {
