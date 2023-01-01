@@ -115,3 +115,32 @@
 	width: 100px;
 	border: none;
 }
+
+@media only screen and (max-width: 670px) {
+  .bisuLogo{
+  	display: none;
+  }
+  .remember{
+  	width: 60%;
+  	/*border:  1px solid black;*/
+  }
+
+  .LoginForm{
+  	margin-bottom: 7rem;
+  }
+
+  .admin{
+  	justify-content: center;
+  }
+
+  .email input, .password input{
+  	width: 300px;
+  }
+
+  .login{
+  	/*border: 1px solid black;*/
+  	gap: 6.2rem;
+  }
+
+
+}
