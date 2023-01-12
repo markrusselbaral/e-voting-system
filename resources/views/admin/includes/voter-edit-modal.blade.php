@@ -15,7 +15,8 @@
             $('#Lastname').val(response.voters.lname)
             $('#course_section').val(response.voters.course_section) 
             $('#edit_department').val(response.voters.department)  
-            $('#edit_college').val(response.voters.college)   
+            $('#edit_college').val(response.voters.college)  
+            $('#edit_statuses').val(response.voters.status)  
          }
      });
     });

@@ -40,7 +40,7 @@ class UserController extends Controller
 
         // ]);
 
-        $userInfo = VoterLogin::where('ismis_id',$request->email)->first();
+        $userInfo = VoterLogin::where('ismis_id',$request->email)->where('status','not yet')->first();
 
         if ($userInfo) {
             $request->session()->put('LoggedUser', $userInfo->id);
@@ -101,6 +101,11 @@ class UserController extends Controller
                     Votes::create($insert);
                 
                 }
+
+                VoterLogin::whereid($request->voter_id)
+                        ->update(['status' => 'voted']);
+
+
             if(session()->has('LoggedUser'))
             {
                 session()->pull('LoggedUser');

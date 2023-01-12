@@ -75,8 +75,8 @@
                     <input type="text" class="form-control" id="position-edit" placeholder="Enter Position" name="position_edit">
                 </div>
                 <div class="mb-3">
-                    <label for="position-order-edit" class="form-label">Position Order</label>
-                    <input type="number" class="form-control" id="position-order-edit" placeholder="Enter Position Order" name="position_order_edit">
+                    <label for="position-order-edit" class="form-label">Vote Limit(s)</label>
+                    <input type="number" class="form-control" id="position-order-edit" placeholder="Enter Vote Limit(s)" name="position_order_edit">
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -111,7 +111,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="position-order" class="form-label">Vote Limit(s)</label>
-                    <input type="number" class="form-control" id="position-order" placeholder="Enter Position Order" name="position_order">
+                    <input type="number" class="form-control" id="position-order" placeholder="Enter Vote Limit(s)" name="position_order">
                 </div>
                 <!-- ENDCONTENT -->
                

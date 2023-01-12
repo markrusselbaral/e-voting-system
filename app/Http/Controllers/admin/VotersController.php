@@ -12,6 +12,7 @@ use App\Imports\VotersImport;
 use App\Exports\VotersExport;
 use App\Models\College;
 use App\Models\Department;
+use App\Models\Status;
 
 class VotersController extends Controller
 {
@@ -22,7 +23,8 @@ class VotersController extends Controller
         $course_sections = Course_section::All();
         $department = Department::All();
         $college = College::All();
-        return view('admin.voters',compact('voters','course_sections','department','college'));
+        $status = Status::all();
+        return view('admin.voters',compact('voters','course_sections','department','college','status'));
     }
 
 
@@ -33,7 +35,7 @@ class VotersController extends Controller
             'fname' => $request->fname,
             'lname' => $request->lname,
             'course_section' => $request->course_section,
-            'status' => 'not yet',
+            'status' => $request->statuses,
             'department' => $request->department,
             'college' => $request->college
         ]);
@@ -59,7 +61,7 @@ class VotersController extends Controller
             'fname' => $request->update_fname,
             'lname' => $request->update_lname,
             'course_section' => $request->update_course_section,
-            'status' => 'not yet',
+            'status' => $request->edit_statuses,
             'department' => $request->edit_department,
             'college' => $request->edit_college
 

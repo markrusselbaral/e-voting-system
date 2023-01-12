@@ -112,6 +112,16 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <label for="edit_statuses" class="form-label">Voting Status</label>
+                    <select class="form-select mb-3" name="edit_statuses" id="edit_statuses">
+                        <option selected>not yet</option>
+                        @foreach($status as $value)
+                        <option value="{{ $value->status }}">{{ $value->status }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <!-- ENDCONTENT -->
                
             </div>
@@ -169,13 +179,21 @@
                         @endforeach
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label for="college" class="form-label">College</label>
                     <select class="form-select mb-3" id="college" name="college">
                         <option selected>...</option>
                         @foreach($college as $value)
                         <option value="{{ $value->colleges }}">{{ $value->colleges }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="statuses" class="form-label">Voting Status</label>
+                    <select class="form-select mb-3" name="statuses" id="statuses">
+                        <option selected>not yet</option>
+                        @foreach($status as $value)
+                        <option value="{{ $value->status }}">{{ $value->status }}</option>
                         @endforeach
                     </select>
                 </div>
