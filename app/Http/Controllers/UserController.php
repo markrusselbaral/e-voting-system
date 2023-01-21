@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function login()
     {
-        return view('client.login');
+        return view('client.login2');
     }
 
     public function vote()
@@ -47,7 +47,7 @@ class UserController extends Controller
             return redirect()->route('vote');
         }
         else{
-            return back()->with('fail', 'We do not recognize your email address');
+            return back()->with('fail', 'We do not recognize your ID number');
         }
 
     }

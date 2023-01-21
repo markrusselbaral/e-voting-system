@@ -13,6 +13,7 @@ use App\Exports\VotersExport;
 use App\Models\College;
 use App\Models\Department;
 use App\Models\Status;
+use App\Models\Votes;
 
 class VotersController extends Controller
 {
@@ -66,7 +67,11 @@ class VotersController extends Controller
             'college' => $request->edit_college
 
         ]);
-        return redirect()->route('index')->with('update','Voter Deleted Successfully');;
+        if ($request->edit_statuses == 'not yet') 
+        {
+            Votes::where('voter_id',$request->editid)->delete();
+        }
+        return redirect()->route('index')->with('update','Voter Updated Successfully');;
     }
 
     public function delete(Request $request)
