@@ -60,7 +60,7 @@
   </div>
 </div>
 <!-- Header -->
-<header>
+<header hidden>
 	<div class="con1">
 		<img src="{{ asset('images/icons8-voting-64.png') }}" class="voteLogo">
 		<span style="color: white; font-weight: 800;">BISU BILAR E - VOTING SYSTEM</span>
@@ -69,17 +69,17 @@
 		<span class="span1">
 			<img src="{{ asset('images/bisu-logo.png') }}" class="bisuLogo">
 		</span>
-		<span class="span2" style="color: white; font-weight: 800;">Welcome Mark Russel Baral</span>
+		<span class="span2" style="color: white; font-weight: 800;">Welcome {{ $LoggedUserInfo['fname'] }} {{ $LoggedUserInfo['lname'] }}</span>
 	</div>
 </header>
 
 <!-- Title -->
-<span class="title">
+<span class="title" hidden>
 	SSG ELECTION 2023
 </span>
 
 <!-- Candidates -->
-<form action="{{ route('submit.vote') }}" method="POST">
+<form action="{{ route('submit.vote') }}" method="POST" hidden>
 	@csrf
 <input type="hidden" name="voter_id" value="{{ $LoggedUserInfo['id'] }}">
 
@@ -110,10 +110,23 @@
 
 @endforeach
 
-<div class="buttonCon">
+<div class="buttonCon" hidden>
 	<input type="submit" value="SUBMIT VOTES">
 </div>
 </form>
+
+<div class="confirmation">
+	<div class="conbox">
+		<span style="font-weight: bold; font-size: 1.5em; margin-top: 2rem;">OTP Verification</span>
+		<div class="email">
+			<div style="font-weight: bold;">
+				We’ve sent verification code to your email - {{ $LoggedUserInfo['email'] }}
+			</div>
+		</div>
+		<input type="text" name="" placeholder="Enter verification code" style="border: 1px solid #D9D9D9;">
+		<input type="submit" name="" style="background-color: #310165; color: white; border: none; height: 40px; margin-bottom: 3rem; font-weight: bold;">
+	</div>	
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>

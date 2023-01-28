@@ -17,6 +17,7 @@
             $('#edit_department').val(response.voters.department)  
             $('#edit_college').val(response.voters.college)  
             $('#edit_statuses').val(response.voters.status)  
+            $('#edit_email').val(response.voters.email)
          }
      });
     });

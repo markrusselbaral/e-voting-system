@@ -11,12 +11,15 @@ use App\Models\Candidate;
 use App\Models\Votes;
 use DB;
 use App\Models\Position;
+use Illuminate\Support\Str;
+use App\Models\Verification;
 
 class UserController extends Controller
 {
     public function login()
     {
-        return view('client.login2');
+        $uniqid = Str::random(5); 
+        return view('client.login2', compact('uniqid'));
     }
 
     public function vote()
@@ -27,7 +30,51 @@ class UserController extends Controller
         //     ->get();
 
           // $candidates = Candidate::orderBy('position')->get();
-        $candidates = Position::with('candidate')->get(); 
+        $candidates = Position::with('candidate')->get();
+
+        
+        
+        if($data)
+        {
+            $uniqid = Str::random(5);
+            $verification = Verification::where('voters_id',$data['LoggedUserInfo']['id'])->first();
+            
+            if($verification == null)
+                Verification::Create([
+                'verification_number' => $uniqid,
+                'status' => 0,
+                'voters_id' => $data['LoggedUserInfo']['id']
+            ]);
+            else{
+                 
+
+                 Verification::where('voters_id',$data['LoggedUserInfo']['id'])->update([
+                    'status' => 0,
+                    'voters_id' =>$data['LoggedUserInfo']['id'] 
+                ]);
+            }
+
+            $verification = Verification::select('verification_number')->whereid($data['LoggedUserInfo']['id'])->first();
+
+            if($verification)
+            {
+                $mail_data = [
+                'recipient' => $data['LoggedUserInfo']['email'],
+                'fromEmail' => 'hr@newgenitsolution.tech',
+                'fromName' => 'markrusselbaral',
+                'subject' => 'Verification code',
+                'body' => $verification['verification_number']
+            ];
+
+        \Mail::send('admin.includes.email-template', $mail_data, function($message) use ($mail_data){
+            $message->to($mail_data['recipient'])
+                    ->from($mail_data['fromEmail'])
+                    ->subject($mail_data['subject']);
+        });
+            }
+
+        }    
+
 
         return view('client.dashboard4', $data, compact('candidates'));
             // return $candidates;

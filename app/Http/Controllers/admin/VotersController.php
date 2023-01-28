@@ -38,7 +38,8 @@ class VotersController extends Controller
             'course_section' => $request->course_section,
             'status' => $request->statuses,
             'department' => $request->department,
-            'college' => $request->college
+            'college' => $request->college,
+            'email' => $request->email
         ]);
 
         return redirect()->route('index')->with('save','Voter Added Successfully');
@@ -64,7 +65,8 @@ class VotersController extends Controller
             'course_section' => $request->update_course_section,
             'status' => $request->edit_statuses,
             'department' => $request->edit_department,
-            'college' => $request->edit_college
+            'college' => $request->edit_college,
+            'email' => $request->edit_email
 
         ]);
         if ($request->edit_statuses == 'not yet') 

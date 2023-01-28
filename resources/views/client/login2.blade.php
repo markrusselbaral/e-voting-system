@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 </head>
 <body>
+
 <div class="container">
 	<div class="bisuLogo">
 		<div class="blue">
@@ -19,6 +20,7 @@
 
 		<form action="{{ route('voter.login') }}" method="POST" class="loginContainer">
 			@csrf
+			<input type="hidden" value="{{ $uniqid }}" name="uniqid">
 			<div class="admin">
 				<div class="line"></div>
 				<span style="font-weight: bold;">Voter's</span>Access

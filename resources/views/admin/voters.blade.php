@@ -85,6 +85,10 @@
                     <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="update_lname">
                 </div>
                 <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="edit_email" placeholder="Enter your email" name="edit_email">
+                </div>
+                <div class="mb-3">
                     <label for="course_section" class="form-label">Course & Section</label>
                     <select class="form-select mb-3" id="course_section" name="update_course_section">
                         <option selected>...</option>
@@ -160,6 +164,10 @@
                 <div class="mb-3">
                     <label for="Lastname" class="form-label">Lastname</label>
                     <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="lname">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
                 </div>
                 <div class="mb-3">
                     <label for="course_section" class="form-label">Course & Section</label>
@@ -293,6 +301,7 @@
                                                 <th>Department</th>
                                                 <th>College</th>
                                                 <th>Status</th>
+                                                <th>Email</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -309,6 +318,7 @@
                                                 <td>
                                                     <span class="badge bg-danger">{{ $value->status }}</span>
                                                 </td>
+                                                <td>{{ $value->email }}</td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 

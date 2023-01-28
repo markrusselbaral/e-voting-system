@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('voter_logins', function (Blueprint $table) {
+        Schema::create('verifications', function (Blueprint $table) {
             $table->id();
-            $table->string('ismis_id');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('course_section');
+            $table->string('verification_number');
             $table->string('status');
-            $table->string('department');
-            $table->string('college');
-            $table->string('email');
+            $table->integer('voters_id');
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voter_logins');
+        Schema::dropIfExists('verifications');
     }
 };

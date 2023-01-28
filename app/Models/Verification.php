@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VoterLogin extends Model
+class Verification extends Model
 {
     use HasFactory;
-    protected $fillable = ['ismis_id','fname','lname','course_section','status','department','college','email'];
+    protected $fillable = ['verification_number','status','voters_id'];
 }
