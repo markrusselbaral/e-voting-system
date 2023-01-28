@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style3.css') }}">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-
 
 <!-- Modal -->
 <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,7 +60,7 @@
   </div>
 </div>
 <!-- Header -->
-<header hidden>
+<header class="header">
 	<div class="con1">
 		<img src="{{ asset('images/icons8-voting-64.png') }}" class="voteLogo">
 		<span style="color: white; font-weight: 800;">BISU BILAR E - VOTING SYSTEM</span>
@@ -74,12 +74,12 @@
 </header>
 
 <!-- Title -->
-<span class="title" hidden>
+<span class="title">
 	SSG ELECTION 2023
 </span>
 
 <!-- Candidates -->
-<form action="{{ route('submit.vote') }}" method="POST" hidden>
+<form action="{{ route('submit.vote') }}" method="POST" class="form">
 	@csrf
 <input type="hidden" name="voter_id" value="{{ $LoggedUserInfo['id'] }}">
 
@@ -110,7 +110,7 @@
 
 @endforeach
 
-<div class="buttonCon" hidden>
+<div class="buttonCon">
 	<input type="submit" value="SUBMIT VOTES">
 </div>
 </form>
@@ -123,8 +123,9 @@
 				We’ve sent verification code to your email - {{ $LoggedUserInfo['email'] }}
 			</div>
 		</div>
-		<input type="text" name="" placeholder="Enter verification code" style="border: 1px solid #D9D9D9;">
-		<input type="submit" name="" style="background-color: #310165; color: white; border: none; height: 40px; margin-bottom: 3rem; font-weight: bold;">
+		<input type="text" id="verify" name="verify" placeholder="Enter verification code" style="border: 1px solid #D9D9D9; text-align: center;">
+		<span id="span"></span>
+		<input type="submit" style="background-color: #310165; color: white; border: none; height: 40px; margin-bottom: 3rem; font-weight: bold;" onclick="addData();">
 	</div>	
 </div>
 
@@ -168,6 +169,57 @@
 </script>
 @endforeach
 
+<script>
+
+$.ajaxSetup({
+	headers:{
+	   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	}
+
+})
+
+	var header = $('.header');
+ 	var title = $('.title');
+ 	var button = $('.buttonCon');
+ 	var form = $('.form');
+ 	var confirmation = $('.confirmation');
+ 	
+
+
+ 			header.addClass('header2');
+			title.addClass('title2');
+			button.addClass('buttonCon2');
+			form.addClass('form2');
+
+ function addData(){
+ 	var span = $('#span');
+ 	var verify = $('#verify').val();
+	$.ajax({
+	type: "POST",
+	dataType: "json",
+	data: {verify:verify},
+	url: "/verify",
+	success: function(data){
+		console.log(data)
+		if(data == "success")
+		{
+			confirmation.css('display', 'none');
+			header.removeClass('header2');
+			title.removeClass('title2');
+			button.removeClass('buttonCon2');
+			form.removeClass('form2');
+		}
+		if(data == "Invalid Verification Code")
+		{
+			alert(data);
+		}
+	}
+
+
+});
+
+}
+</script>
 
 
 

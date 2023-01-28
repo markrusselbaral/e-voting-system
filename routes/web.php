@@ -101,7 +101,7 @@ Route::delete('/deleteAllCandidate', [CandidatesController::class,'deleteAll'])-
 Route::post('login',[UserController::class,'check'])->name('voter.login');
 Route::get('logout',[UserController::class,'logout'])->name('logout');
 Route::get('/show-candidate/{id}', [UserController::class,'edit'])->name('course-section-edit');
-
+Route::post('/verify',[UserController::class,'verify'])->name('voter.verify');
 Route::group(['middleware'=>['AuthCheck']], function(){
 	Route::get('/',[UserController::class,'login'])->name('login');
 	Route::get('auth/vote',[UserController::class,'vote'])->name('vote');

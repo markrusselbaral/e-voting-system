@@ -20,7 +20,7 @@
 
 		<form action="{{ route('voter.login') }}" method="POST" class="loginContainer">
 			@csrf
-			<input type="hidden" value="{{ $uniqid }}" name="uniqid">
+			
 			<div class="admin">
 				<div class="line"></div>
 				<span style="font-weight: bold;">Voter's</span>Access

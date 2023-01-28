@@ -40,11 +40,35 @@ class UserController extends Controller
             $verification = Verification::where('voters_id',$data['LoggedUserInfo']['id'])->first();
             
             if($verification == null)
-                Verification::Create([
-                'verification_number' => $uniqid,
-                'status' => 0,
-                'voters_id' => $data['LoggedUserInfo']['id']
-            ]);
+            {
+                    Verification::Create([
+                    'verification_number' => $uniqid,
+                    'status' => 0,
+                    'voters_id' => $data['LoggedUserInfo']['id']
+                ]);
+
+                    $verification_email = Verification::select('verification_number')->where('voters_id',$data['LoggedUserInfo']['id'])->first();
+
+                    if($verification_email)
+                    {
+                        $mail_data = [
+                        'recipient' => $data['LoggedUserInfo']['email'],
+                        'fromEmail' => 'hr@newgenitsolution.tech',
+                        'fromName' => 'markrusselbaral',
+                        'subject' => 'Verification code',
+                        'body' => $verification_email['verification_number']
+                    ];
+
+                        \Mail::send('admin.includes.email-template', $mail_data, function($message) use ($mail_data){
+                            $message->to($mail_data['recipient'])
+                                    ->from($mail_data['fromEmail'])
+                                    ->subject($mail_data['subject']);
+                        });
+                    }
+            }    
+
+            
+
             else{
                  
 
@@ -54,24 +78,7 @@ class UserController extends Controller
                 ]);
             }
 
-            $verification = Verification::select('verification_number')->whereid($data['LoggedUserInfo']['id'])->first();
-
-            if($verification)
-            {
-                $mail_data = [
-                'recipient' => $data['LoggedUserInfo']['email'],
-                'fromEmail' => 'hr@newgenitsolution.tech',
-                'fromName' => 'markrusselbaral',
-                'subject' => 'Verification code',
-                'body' => $verification['verification_number']
-            ];
-
-        \Mail::send('admin.includes.email-template', $mail_data, function($message) use ($mail_data){
-            $message->to($mail_data['recipient'])
-                    ->from($mail_data['fromEmail'])
-                    ->subject($mail_data['subject']);
-        });
-            }
+            
 
         }    
 
@@ -177,5 +184,25 @@ class UserController extends Controller
             'candidates' =>$candidates,
         ]);
 
+    }
+
+
+    public function verify(Request $request)
+    {
+        $data = ['LoggedUserInfo'=>VoterLogin::where('id', session('LoggedUser'))->first()];
+
+       $verify = Verification::select('verification_number')->where('verification_number',$request->verify)->where('voters_id',$data['LoggedUserInfo']['id'])->first();
+       if($verify)
+       {
+            return response()->json("success");
+            // Verification::where('voters_id',$data['LoggedUserInfo']['id'])->update([
+            //     'status'
+            // ])
+       }
+       else{
+            return response()->json("Invalid Verification Code");
+       }
+       // return response()->json($verify);
+       
     }
 }
