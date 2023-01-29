@@ -18,8 +18,7 @@ class UserController extends Controller
 {
     public function login()
     {
-        $uniqid = Str::random(5); 
-        return view('client.login2', compact('uniqid'));
+        return view('client.login2');
     }
 
     public function vote()
@@ -140,8 +139,12 @@ class UserController extends Controller
         //             'image_name' => $fileName,
         //             'voter_id'      => $request->voter_id,
         //     ]);
+        $data = ['LoggedUserInfo'=>VoterLogin::where('id', session('LoggedUser'))->first()];
+        $verify = Verification::select('status')->where('status',1)->where('voters_id',$data['LoggedUserInfo']['id']);
 
-                foreach($request->check as $key=>$name)
+        if ($verify)
+        {
+            foreach($request->check as $key=>$name)
                 {
                    
                     $insert = [
@@ -165,6 +168,9 @@ class UserController extends Controller
                 session()->pull('LoggedUser');
                 return redirect()->route('login');
             }
+        }
+
+                
         // } 
     }
 
@@ -194,15 +200,15 @@ class UserController extends Controller
        $verify = Verification::select('verification_number')->where('verification_number',$request->verify)->where('voters_id',$data['LoggedUserInfo']['id'])->first();
        if($verify)
        {
+            Verification::where('voters_id',$data['LoggedUserInfo']['id'])->update([
+                    'status' => 1
+                ]);
             return response()->json("success");
-            // Verification::where('voters_id',$data['LoggedUserInfo']['id'])->update([
-            //     'status'
-            // ])
+            
        }
        else{
             return response()->json("Invalid Verification Code");
        }
-       // return response()->json($verify);
        
     }
 }

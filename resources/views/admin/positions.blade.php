@@ -195,7 +195,7 @@
                                             <thead>
                                             <tr>
                                                 <th>Position</th>
-                                                <th>Position Order</th>
+                                                <th>Vote Limit</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
