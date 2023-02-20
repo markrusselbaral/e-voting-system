@@ -40,7 +40,7 @@ class CandidatesController extends Controller
 
             $file = $request->file('picture');
             $imageName=time().'_'.$file->getClientOriginalName();
-            $file->move(\public_path("uploads/image3/"),$imageName);
+            $file->move(\storage_path("uploads/image3/"),$imageName);
         
             Candidate::create([
 
