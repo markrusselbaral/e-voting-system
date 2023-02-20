@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\CollegesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PartylistsController;
 use App\Http\Controllers\Admin\CandidatesController;
+use App\Http\Controllers\Admin\TitleController;
+use App\Http\Controllers\Admin\StartorstopController;
+
 
 
 /*
@@ -95,6 +98,12 @@ Route::put('/candidates', [CandidatesController::class,'update'])->name('candida
 Route::delete('/candidates', [CandidatesController::class,'delete'])->name('candidate-delete');
 Route::delete('/deleteAllCandidate', [CandidatesController::class,'deleteAll'])->name('candidate-deleteAll');
 
+
+// admin-title
+Route::get('/title',[TitleController::class,'index'])->name('title-index');
+Route::get('/edit-title/{id}', [TitleController::class,'edit'])->name('title-edit');
+Route::put('/title', [TitleController::class,'update'])->name('title-update');
+Route::post('/change', [StartorstopController::class,'change'])->name('title-change');
 
 
 // voters

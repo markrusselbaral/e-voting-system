@@ -74,7 +74,7 @@
 
 <!-- Title -->
 <span class="title">
-	SSG ELECTION 2023
+	{{$title->title}}
 </span>
 
 <!-- Candidates -->
@@ -197,7 +197,7 @@ $.ajaxSetup({
 	type: "POST",
 	dataType: "json",
 	data: {verify:verify},
-	url: "/verify",
+	url: "/verify", 
 	success: function(data){
 		console.log(data)
 		if(data == "success")

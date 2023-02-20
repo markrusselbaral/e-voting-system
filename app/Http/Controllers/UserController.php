@@ -13,6 +13,8 @@ use DB;
 use App\Models\Position;
 use Illuminate\Support\Str;
 use App\Models\Verification;
+use App\Models\Startelection;
+use App\Models\Title;
 
 class UserController extends Controller
 {
@@ -31,7 +33,7 @@ class UserController extends Controller
           // $candidates = Candidate::orderBy('position')->get();
         $candidates = Position::with('candidate')->get();
 
-        
+        $title = Title::select('title')->first();
         
         if($data)
         {
@@ -77,12 +79,14 @@ class UserController extends Controller
                 ]);
             }
 
+
+
             
 
         }    
 
 
-        return view('client.dashboard4', $data, compact('candidates'));
+        return view('client.dashboard4', $data, compact('candidates','title'));
             // return $candidates;
     }
 
@@ -95,7 +99,9 @@ class UserController extends Controller
 
         $userInfo = VoterLogin::where('ismis_id',$request->email)->where('status','not yet')->first();
 
-        if ($userInfo) {
+        $electionStatus = Startelection::select('startorstop')->first();
+
+        if ($userInfo && $electionStatus['startorstop'] == '1') {
             $request->session()->put('LoggedUser', $userInfo->id);
             return redirect()->route('vote');
         }

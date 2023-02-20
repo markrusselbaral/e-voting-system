@@ -70,7 +70,7 @@
 </li>
 
 <li class="side-nav-item">
-    <a href="apps-chat.html" class="side-nav-link">
+    <a href="{{ route('title-index') }}" class="side-nav-link">
         <i class="uil-comments-alt"></i>
         <span> Election Title </span>
     </a>
