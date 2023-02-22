@@ -12,6 +12,10 @@ use App\Http\Controllers\Admin\PartylistsController;
 use App\Http\Controllers\Admin\CandidatesController;
 use App\Http\Controllers\Admin\TitleController;
 use App\Http\Controllers\Admin\StartorstopController;
+use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\AdminLoginController;
+
 
 
 
@@ -26,12 +30,11 @@ use App\Http\Controllers\Admin\StartorstopController;
 |
 */
 
-// admin-dashboard
-Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard-index');
+
 
 
 // admin-voters
-Route::get('/voters',[VotersController::class,'index'])->name('index');
+
 Route::post('/voters',[VotersController::class,'save'])->name('save');
 Route::post('file-import', [VotersController::class, 'fileImport'])->name('file-import');
 Route::get('file-export', [VotersController::class, 'fileExport'])->name('file-export');
@@ -42,7 +45,7 @@ Route::delete('/deleteAllVoters', [VotersController::class,'deleteAll'])->name('
 
 
 // admin-position
-Route::get('/positions',[PositionsController::class,'index'])->name('position-index');
+
 Route::post('/positions',[PositionsController::class,'save'])->name('position-save');
 Route::get('/edit-position/{id}', [PositionsController::class,'edit'])->name('position-edit');
 Route::put('/positions', [PositionsController::class,'update'])->name('position-update');
@@ -61,7 +64,7 @@ Route::delete('/deleteAllCourse_section', [CoursesectionController::class,'delet
 
 
 // admin-department
-Route::get('/departments',[DepartmentsController::class,'index'])->name('department-index');
+
 Route::post('/departments',[DepartmentsController::class,'save'])->name('department-save');
 Route::get('/edit-department/{id}', [DepartmentsController::class,'edit'])->name('department-edit');
 Route::put('/departments', [DepartmentsController::class,'update'])->name('department-update');
@@ -70,7 +73,7 @@ Route::delete('/deleteAllDepartments', [PositionsController::class,'deleteAll'])
 
 
 // admin-college
-Route::get('/colleges',[CollegesController::class,'index'])->name('college-index');
+
 Route::post('/colleges',[CollegesController::class,'save'])->name('collage-save');
 Route::get('/edit-college/{id}', [CollegesController::class,'edit'])->name('college-edit');
 Route::put('/colleges', [CollegesController::class,'update'])->name('college-update');
@@ -80,7 +83,7 @@ Route::delete('/deleteAllCollege', [CollegesController::class,'deleteAll'])->nam
 
 
 // admin-partylist
-Route::get('/partylists',[PartylistsController::class,'index'])->name('partylist-index');
+
 Route::post('/partylists',[PartylistsController::class,'save'])->name('partylist-save');
 Route::get('/edit-partylist/{id}', [PartylistsController::class,'edit'])->name('partylist-edit');
 Route::put('/partylists', [PartylistsController::class,'update'])->name('partylist-update');
@@ -90,7 +93,7 @@ Route::delete('/deleteAllPartylist', [PartylistsController::class,'deleteAll'])-
 
 
 // admin-candidate
-Route::get('/candidates',[CandidatesController::class,'index'])->name('candidate-index');
+
 Route::post('/candidates-search',[CandidatesController::class,'search'])->name('candidate-search');
 Route::post('/candidates',[CandidatesController::class,'save'])->name('candidate-save');
 Route::get('/edit-candidate/{id}', [CandidatesController::class,'edit'])->name('candidate-edit');
@@ -100,10 +103,45 @@ Route::delete('/deleteAllCandidate', [CandidatesController::class,'deleteAll'])-
 
 
 // admin-title
-Route::get('/title',[TitleController::class,'index'])->name('title-index');
+
 Route::get('/edit-title/{id}', [TitleController::class,'edit'])->name('title-edit');
 Route::put('/title', [TitleController::class,'update'])->name('title-update');
 Route::post('/change', [StartorstopController::class,'change'])->name('title-change');
+
+
+// admin-user management
+
+Route::post('/user',[UserManagementController::class,'save'])->name('user-save');
+Route::get('/edit-user/{id}', [UserManagementController::class,'edit'])->name('user-edit');
+Route::put('/user', [UserManagementController::class,'update'])->name('user-update');
+Route::delete('/user', [UserManagementController::class,'delete'])->name('user-delete');
+Route::delete('/deleteAllUsers', [UserManagementController::class,'deleteAll'])->name('user-deleteAll');
+
+
+// profile
+Route::post('/profiles',[ProfileController::class,'update'])->name('profile-update');
+Route::post('/profile',[ProfileController::class,'update_photo'])->name('photo-update');
+
+// login
+Route::get('/admin/login',[AdminLoginController::class,'index'])->name('login-index');
+Route::post('/admin/login',[AdminLoginController::class,'login'])->name('admin-login');
+Route::get('/admin/logout',[AdminLoginController::class,'signOut'])->name('admin-logout');
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard-index');
+    Route::get('/voters',[VotersController::class,'index'])->name('index');
+    Route::get('/positions',[PositionsController::class,'index'])->name('position-index');
+    Route::get('/course_section',[CoursesectionController::class,'index'])->name('course-section-index');
+    Route::get('/departments',[DepartmentsController::class,'index'])->name('department-index');
+    Route::get('/colleges',[CollegesController::class,'index'])->name('college-index');
+    Route::get('/partylists',[PartylistsController::class,'index'])->name('partylist-index');
+    Route::get('/candidates',[CandidatesController::class,'index'])->name('candidate-index');
+    Route::get('/user',[UserManagementController::class,'index'])->name('user-index');
+    Route::get('/title',[TitleController::class,'index'])->name('title-index');
+    Route::get('/profile',[ProfileController::class,'index'])->name('profile-index');
+
+});
+
 
 
 // voters

@@ -1,5 +1,5 @@
 <!-- App favicon -->
-<link rel="shortcut icon" href="admin/assets/images/favicon.ico">
+<link rel="shortcut icon" href="{{ asset('uploads/image3/'.auth()->user()->photo) }}">
 
 <!-- third party css -->
 <link href="admin/assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css">

@@ -7,7 +7,7 @@
 @section('content')
 
 <!-- Delete All modal -->
-<form action="{{ route('deleteAll') }}" method="POST">
+<form action="{{ route('user-deleteAll') }}" method="POST">
 @csrf
 @method('DELETE')
 <div id="deleteAllModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
@@ -18,7 +18,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <h4>Are you sure you want to delete all voters?</h4>
+                <h4>Are you sure you want to delete all user?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -31,7 +31,7 @@
 
 
 <!-- Delete modal -->
-<form action="{{ route('delete') }}" method="POST">
+<form action="{{ route('user-delete') }}" method="POST">
 @csrf
 @method('DELETE')
 <div id="deletemodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel" aria-hidden="true">
@@ -43,7 +43,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="deleteid" id="deleteid">
-                <h4>Are you sure you want to delete this voter?</h4>
+                <h4>Are you sure you want to delete this user?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -56,75 +56,39 @@
 
 
 <!-- Update Modal -->
-<form action="{{ route('update') }}" method="POST">
+<form action="{{ route('user-update') }}" method="POST" enctype="multipart/form-data">
 @csrf
 @method('PUT')
 <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="standard-modalLabel">Edit Voter</h4>
+                <h4 class="modal-title" id="standard-modalLabel">Edit User</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button> -->
             </div>
             <div class="modal-body">
                 
-                <!-- CONTENT -->
+                 <!-- CONTENT -->
                 <div class="mb-3">
-                    <label for="ismis_id" class="form-label">ISMIS ID</label>
-                    <input type="hidden" id="editid" name="editid">
-                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="update_ismis_id">
+                    <input type="hidden" name="edit_user_id" id="edit-user-id">
+                    <label for="name-edit" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name-edit" placeholder="Enter Name" name="name_edit">
                 </div>
                 <div class="mb-3">
-                    <label for="Firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="update_fname">
+                    <label for="email-edit" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-edit" placeholder="Enter Email" name="email_edit">
                 </div>
                 <div class="mb-3">
-                    <label for="Lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="update_lname">
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="edit_email" placeholder="Enter your email" name="edit_email">
-                </div>
-                <div class="mb-3">
-                    <label for="course_section" class="form-label">Course & Section</label>
-                    <select class="form-select mb-3" id="course_section" name="update_course_section">
+                    <label for="roles-edit" class="form-label">Role</label>
+                    <select class="form-select mb-3" id="roles-edit" name="role_edit">
                         <option selected>...</option>
-                        @foreach($course_sections as $value)
-                        <option value="{{ $value->course_sections }}">{{ $value->course_sections }}</option>
-                        @endforeach
+                        <option value="admin">admin</option>
+                        <option value="sub-admin">sub-admin</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="edit_department" class="form-label">Department</label>
-                    <select class="form-select mb-3" id="edit_department" name="edit_department">
-                        <option selected>...</option>
-                        @foreach($department as $value)
-                        <option value="{{ $value->departments }}">{{ $value->departments }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="edit_college" class="form-label">College</label>
-                    <select class="form-select mb-3" id="edit_college" name="edit_college">
-                        <option selected>...</option>
-                        @foreach($college as $value)
-                        <option value="{{ $value->colleges }}">{{ $value->colleges }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="edit_statuses" class="form-label">Voting Status</label>
-                    <select class="form-select mb-3" name="edit_statuses" id="edit_statuses">
-                        <option selected>not yet</option>
-                        @foreach($status as $value)
-                        <option value="{{ $value->status }}">{{ $value->status }}</option>
-                        @endforeach
-                    </select>
+                    <label for="photo" class="form-label">Photo</label>
+                    <input type="file" class="form-control" id="photo_edit" name="photo_edit" required>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -141,69 +105,44 @@
 
 
 <!-- Save modal -->
-<form action="{{ route('save') }}" method="POST">
+<form action="{{ route('user-save') }}" method="POST" enctype="multipart/form-data">
 @csrf
 <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="standard-modalLabel">Add Voter</h4>
+                <h4 class="modal-title" id="standard-modalLabel">Add User</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 
                 <!-- CONTENT -->
                 <div class="mb-3">
-                    <label for="ismis_id" class="form-label">ISMIS ID</label>
-                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="ismis_id">
+                    <label for="user" class="form-label">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter Firstname" name="firstname" required>
                 </div>
                 <div class="mb-3">
-                    <label for="Firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="fname">
+                    <label for="user" class="form-label">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter Lastname" name="lastname" required>
                 </div>
                 <div class="mb-3">
-                    <label for="Lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="lname">
+                    <label for="user" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
-                </div>
-                <div class="mb-3">
-                    <label for="course_section" class="form-label">Course & Section</label>
-                    <select class="form-select mb-3" id="course_section" name="course_section">
+                    <label for="roles" class="form-label">Role</label>
+                    <select class="form-select mb-3" id="roles" name="role">
                         <option selected>...</option>
-                        @foreach($course_sections as $value)
-                        <option value="{{ $value->course_sections }}">{{ $value->course_sections }}</option>
-                        @endforeach
+                        <option value="admin">admin</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="department" class="form-label">Department</label>
-                    <select class="form-select mb-3" id="department" name="department">
-                        <option selected>...</option>
-                        @foreach($department as $value)
-                        <option value="{{ $value->departments }}">{{ $value->departments }}</option>
-                        @endforeach
-                    </select>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="college" class="form-label">College</label>
-                    <select class="form-select mb-3" id="college" name="college">
-                        <option selected>...</option>
-                        @foreach($college as $value)
-                        <option value="{{ $value->colleges }}">{{ $value->colleges }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="statuses" class="form-label">Voting Status</label>
-                    <select class="form-select mb-3" name="statuses" id="statuses">
-                        <option selected>not yet</option>
-                        @foreach($status as $value)
-                        <option value="{{ $value->status }}">{{ $value->status }}</option>
-                        @endforeach
-                    </select>
+                    <label for="photo" class="form-label">Photo</label>
+                    <input type="file" class="form-control" id="photo" name="photo" required>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -258,10 +197,10 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Manage</a></li>
-                                            <li class="breadcrumb-item active">Voters</li>
+                                            <li class="breadcrumb-item active">Users</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Voters</h4>
+                                    <h4 class="page-title">Users</h4>
                                 </div>
                             </div>
                         </div>     
@@ -273,58 +212,35 @@
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
-                                                <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add Voter</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal"><i class="mdi mdi-plus-circle me-2"></i> Add User</a>
                                             </div>
                                             <div class="col-sm-8">
-                                                <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
-                                                @csrf
                                                 <div class="text-sm-end">
                                                     <button type="button" class="btn btn-danger mb-2 me-1" data-bs-toggle="modal" data-bs-target="#deleteAllModal"><i class="mdi mdi-delete-outline"></i>Delete all</button>
-
-                                                    <input type="file"  class="btn btn-light mb-2 me-1" name="file">
-                                                    
-                                                    <button type="submit" class="btn btn-light mb-2">Import</button>
-
-                                                    <a href="{{ route('file-export') }}"><button type="button" class="btn btn-light mb-2">Export</button></a>
                                                 </div>
                                             </div><!-- end col-->
-                                            </form>
                                         </div>
                 
                                         <div class="table-responsive">
                                           <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                             <thead>
                                             <tr>
-                                                <th>ISMIS ID</th>
-                                                <th>Fullname</th>
-                                                <th>Course & Section</th>
-                                                <th>Department</th>
-                                                <th>College</th>
-                                                <th>Status</th>
+                                                <th>Name</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Photo</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
 
 
                                             <tbody>
-                                            @foreach($voters as $value)
+                                            @foreach($user as $value)
                                             <tr>
-                                                <td>{{ $value->ismis_id }}</td>
-                                                <td>{{ $value->fname }} {{ $value->lname }}</td>
-                                                <td>{{ $value->course_section }}</td>
-                                                <td>{{ $value->department }}</td>
-                                                <td>{{ $value->college }}</td>
-                                                <td>
-                                                    <span class="
-                                                    @if( $value->status == 'not yet' )
-                                                    badge bg-danger
-                                                    @else
-                                                    badge bg-success
-                                                    @endif">{{ $value->status }}
-                                                    </span>
-                                                </td>
+                                                <td>{{ $value->name }}</td>
                                                 <td>{{ $value->email }}</td>
+                                                <td>{{ $value->role }}</td>
+                                                <td><img src="{{ asset('uploads/image3/'.$value->photo) }}" style="border-radius: 100%; width: 40px; height: 40px;"></td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 
@@ -350,7 +266,7 @@
 
                 </div> <!-- content -->
 
-                
+               
 
             </div>
 
@@ -369,7 +285,7 @@
 
 @section('js')
     @include('admin.includes.voters-js')
-    @include('admin.includes.voter-edit-modal')
-    @include('admin.includes.voter-delete-modal')
-    @include('admin.includes.voters-toast-notification')
+    @include('admin.includes.user-edit-modal')
+    @include('admin.includes.user-delete-modal')
+    @include('admin.includes.user-toast-notification')
 @endsection

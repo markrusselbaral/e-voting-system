@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Candidate;
 use DB;
 use App\Models\VoterLogin;
-use App\Models\Partylist;
+use App\Models\Partylist; 
 use App\Models\Position;
 use App\Models\Department;
 use App\Models\College;

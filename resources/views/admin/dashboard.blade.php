@@ -122,9 +122,9 @@
                                             <div class="col-sm-6 col-xl-3">
                                                 <div class="card shadow-none m-0">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-briefcase text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>29</span></h3>
-                                                        <p class="text-muted font-15 mb-0">Total Projects</p>
+                                                        <i class="uil-users-alt" style="font-size: 24px;"></i>
+                                                        <h3><span>{{ $candidate1 }}</span></h3>
+                                                        <p class="text-muted font-15 mb-0">No. Candidates</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,9 +132,9 @@
                                             <div class="col-sm-6 col-xl-3">
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-checklist text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>715</span></h3>
-                                                        <p class="text-muted font-15 mb-0">Total Tasks</p>
+                                                        <i class="uil-location" style="font-size: 24px;"></i>
+                                                        <h3><span>{{ $position1 }}</span></h3>
+                                                        <p class="text-muted font-15 mb-0">No. of Positions</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,9 +142,9 @@
                                             <div class="col-sm-6 col-xl-3">
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-user-group text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>31</span></h3>
-                                                        <p class="text-muted font-15 mb-0">Members</p>
+                                                        <i class="uil-users-alt" style="font-size: 24px;"></i>
+                                                        <h3><span>{{ $voterlogin1 }}</span></h3>
+                                                        <p class="text-muted font-15 mb-0">Total Voters</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,9 +152,9 @@
                                             <div class="col-sm-6 col-xl-3">
                                                 <div class="card shadow-none m-0 border-start">
                                                     <div class="card-body text-center">
-                                                        <i class="dripicons-graph-line text-muted" style="font-size: 24px;"></i>
-                                                        <h3><span>93%</span> <i class="mdi mdi-arrow-up text-success"></i></h3>
-                                                        <p class="text-muted font-15 mb-0">Productivity</p>
+                                                        <i class="uil-comments-alt" style="font-size: 24px;"></i>
+                                                        <h3><span>{{ $voted1 }}</span></h3>
+                                                        <p class="text-muted font-15 mb-0">Voters Voted</p>
                                                     </div>
                                                 </div>
                                             </div>

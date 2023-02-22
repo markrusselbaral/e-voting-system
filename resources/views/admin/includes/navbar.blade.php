@@ -4,11 +4,11 @@
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <span class="account-user-avatar"> 
-                                        <img src="admin/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                        <img src="{{ asset('uploads/image3/'.auth()->user()->photo) }}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Mark Russel Baral</span>
-                                        <span class="account-position">Admin</span>
+                                        <span class="account-user-name">{{ auth()->user()->name }}</span>
+                                        <span class="account-position">{{ auth()->user()->role }}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -18,7 +18,7 @@
                                     </div>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <a href="{{ route('admin-logout') }}" class="dropdown-item notify-item">
                                         <i class="mdi mdi-logout me-1"></i>
                                         <span>Logout</span>
                                     </a>

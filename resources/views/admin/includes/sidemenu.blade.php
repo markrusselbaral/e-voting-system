@@ -63,9 +63,9 @@
 <li class="side-nav-title side-nav-item">Settings</li>
 
 <li class="side-nav-item">
-    <a href="apps-chat.html" class="side-nav-link">
-        <i class="uil-comments-alt"></i>
-        <span> Ballot Position </span>
+    <a href="{{ route('user-index') }}" class="side-nav-link">
+        <i class="uil-users-alt"></i>
+        <span> User Management </span>
     </a>
 </li>
 
@@ -73,6 +73,13 @@
     <a href="{{ route('title-index') }}" class="side-nav-link">
         <i class="uil-comments-alt"></i>
         <span> Election Title </span>
+    </a>
+</li>
+
+<li class="side-nav-item">
+    <a href="{{ route('profile-index') }}" class="side-nav-link">
+        <i class="uil-user"></i>
+        <span> Profile </span>
     </a>
 </li>
 </ul>   
