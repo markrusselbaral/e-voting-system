@@ -25,16 +25,16 @@ class UserController extends Controller
 
     public function vote()
     {
+        // not yet done
         $data = ['LoggedUserInfo'=>VoterLogin::where('id', session('LoggedUser'))->first()];
+        if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DCOS')
+        {
+            $candidates = Position::with('candidate')->select('*')->where('position','!=','CANR GOVERNOR')->where('position','!=','CTE GOVERNOR')->get();
+        }
+        // not yet done
 
-        // $candidates = Candidate::join('positions', 'candidates.position_id', '=', 'positions.id')->select('positions.*','candidates.*')->orderBy('positions.id')
-        //     ->get();
-
-          // $candidates = Candidate::orderBy('position')->get();
-        $candidates = Position::with('candidate')->get();
 
         $title = Title::select('title')->first();
-        
         if($data)
         {
             $uniqid = Str::random(5);

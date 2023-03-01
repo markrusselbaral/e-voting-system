@@ -74,19 +74,19 @@
                 <div class="mb-3">
                     <label for="ismis_id" class="form-label">ISMIS ID</label>
                     <input type="hidden" id="editid" name="editid">
-                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="update_ismis_id">
+                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="update_ismis_id" required>
                 </div>
                 <div class="mb-3">
                     <label for="Firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="update_fname">
+                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="update_fname" required>
                 </div>
                 <div class="mb-3">
                     <label for="Lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="update_lname">
+                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="update_lname" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="edit_email" placeholder="Enter your email" name="edit_email">
+                    <input type="email" class="form-control" id="edit_email" placeholder="Enter your email" name="edit_email" required>
                 </div>
                 <div class="mb-3">
                     <label for="course_section" class="form-label">Course & Section</label>
@@ -155,19 +155,19 @@
                 <!-- CONTENT -->
                 <div class="mb-3">
                     <label for="ismis_id" class="form-label">ISMIS ID</label>
-                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="ismis_id">
+                    <input type="number" class="form-control" id="ismis_id" placeholder="Enter ISMIS ID" name="ismis_id" required>
                 </div>
                 <div class="mb-3">
                     <label for="Firstname" class="form-label">Firstname</label>
-                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="fname">
+                    <input type="text" class="form-control" id="Firstname" placeholder="Enter your firstname" name="fname" required>
                 </div>
                 <div class="mb-3">
                     <label for="Lastname" class="form-label">Lastname</label>
-                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="lname">
+                    <input type="text" class="form-control" id="Lastname" placeholder="Enter your lastname" name="lname" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email">
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
                 </div>
                 <div class="mb-3">
                     <label for="course_section" class="form-label">Course & Section</label>

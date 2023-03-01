@@ -72,11 +72,11 @@
                 <div class="mb-3">
                     <input type="hidden" name="edit_user_id" id="edit-user-id">
                     <label for="name-edit" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name-edit" placeholder="Enter Name" name="name_edit">
+                    <input type="text" class="form-control" id="name-edit" placeholder="Enter Name" name="name_edit" required>
                 </div>
                 <div class="mb-3">
                     <label for="email-edit" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email-edit" placeholder="Enter Email" name="email_edit">
+                    <input type="text" class="form-control" id="email-edit" placeholder="Enter Email" name="email_edit" required>
                 </div>
                 <div class="mb-3">
                     <label for="roles-edit" class="form-label">Role</label>

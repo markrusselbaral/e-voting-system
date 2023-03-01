@@ -279,7 +279,7 @@
                                                 <td>{{ $value->department }}</td>
                                                 <td>{{ $value->college }}</td>
                                                 
-                                                <td><img src="{{ asset('uploads/image3/'.$value->picture) }}" style="border-radius: 100%; width: 40px; height: 40px;"></td>
+                                                <td><img src="{{ asset('uploads/image4/'.$value->picture) }}" style="border-radius: 100%; width: 40px; height: 40px;"></td>
                                                 <td class="table-action">
                                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
 

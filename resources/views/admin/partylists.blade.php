@@ -72,7 +72,7 @@
                 <div class="mb-3">
                 	<input type="hidden" name="edit_partylist_id" id="edit-partylist-id">
                     <label for="department-edit" class="form-label">Partylist</label>
-                    <input type="text" class="form-control" id="partylist-edit" placeholder="Enter Partylist" name="partylist_edit">
+                    <input type="text" class="form-control" id="partylist-edit" placeholder="Enter Partylist" name="partylist_edit" required>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -103,7 +103,7 @@
                 <!-- CONTENT -->
                 <div class="mb-3">
                     <label for="partylist" class="form-label">Partylist</label>
-                    <input type="text" class="form-control" id="partylist" placeholder="Enter Partylist" name="partylist">
+                    <input type="text" class="form-control" id="partylist" placeholder="Enter Partylist" name="partylist" required>
                 </div>
                 <!-- ENDCONTENT -->
                

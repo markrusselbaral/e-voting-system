@@ -72,7 +72,7 @@
                 <div class="mb-3">
                 	<input type="hidden" name="edit_course_section_id" id="edit-course_section-id">
                     <label for="course_section" class="form-label">Course & Section</label>
-                    <input type="text" class="form-control" id="course_section-edit" placeholder="Enter Course & Section" name="course_section_edit">
+                    <input type="text" class="form-control" id="course_section-edit" placeholder="Enter Course & Section" name="course_section_edit" required>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -103,7 +103,7 @@
                 <!-- CONTENT -->
                 <div class="mb-3">
                     <label for="course_section" class="form-label">Course & Section</label>
-                    <input type="text" class="form-control" id="course_section" placeholder="Enter Course & Section" name="course_section">
+                    <input type="text" class="form-control" id="course_section" placeholder="Enter Course & Section" name="course_section" required>
                 </div>
                 <!-- ENDCONTENT -->
                

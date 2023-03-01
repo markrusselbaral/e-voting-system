@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('voter_id')->nullable();
-            $table->foreign('voter_id')->references('id')->on('voter_logins');
+            $table->foreign('voter_id')->references('id')->on('voter_logins')->onDelete('cascade');
             $table->unsignedBigInteger('candidate_id')->nullable();
-            $table->foreign('candidate_id')->references('id')->on('candidates');
+            $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->unsignedBigInteger('position_id')->nullable();
-            $table->foreign('position_id')->references('id')->on('positions');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             // $table->unsignedBigInteger('images_id')->nullable();
             // $table->foreign('images_id')->references('id')->on('images');
             // $table->unsignedBigInteger('candidate-details_id')->nullable();

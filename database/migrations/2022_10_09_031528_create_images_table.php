@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('image_name');
             $table->unsignedBigInteger('voter_id')->nullable();
-            $table->foreign('voter_id')->references('id')->on('voter_logins');
+            $table->foreign('voter_id')->references('id')->on('voter_logins')->onDelete('cascade');
             $table->timestamps();
         });
     }

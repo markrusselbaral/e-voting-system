@@ -40,7 +40,7 @@ class CandidatesController extends Controller
 
             $file = $request->file('picture');
             $imageName=time().'_'.$file->getClientOriginalName();
-            $file->move(\storage_path("uploads/image3/"),$imageName);
+            $file->move(\public_path("uploads/image4/"),$imageName);
         
             Candidate::create([
 
@@ -98,7 +98,7 @@ class CandidatesController extends Controller
 
           if($request->hasfile('picture_edit'))
         {
-             $destination = 'uploads/image3/'.$candidate -> picture;
+             $destination = 'uploads/image4/'.$candidate -> picture;
              if(File::exists($destination))
              {
                  File::delete($destination);
@@ -106,7 +106,7 @@ class CandidatesController extends Controller
 
             $file = $request->file('picture_edit');
             $imageName=time().'_'.$file->getClientOriginalName();
-            $file->move(\public_path("uploads/image3/"),$imageName);
+            $file->move(\public_path("uploads/image4/"),$imageName);
             $candidate->picture = $imageName;
 
         }
@@ -124,7 +124,7 @@ class CandidatesController extends Controller
        
          $candidate = Candidate::find($request->deleteid);
 
-        $destination = 'uploads/image3/'.$candidate -> picture;
+        $destination = 'uploads/image4/'.$candidate -> picture;
         if(File::exists($destination))
         {
             File::delete($destination);
@@ -137,7 +137,7 @@ class CandidatesController extends Controller
     public function deleteAll()
     {
          
-        File::cleanDirectory('uploads/image3/');
+        File::cleanDirectory('uploads/image4/');
         DB::table('candidates')->delete();
         return redirect()->route('candidate-index')->with('deleteAll','Candidate Added Successfully');
     }

@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\StartorstopController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\ResultController;
+
+
 
 
 
@@ -121,6 +124,7 @@ Route::delete('/deleteAllUsers', [UserManagementController::class,'deleteAll'])-
 // profile
 Route::post('/profiles',[ProfileController::class,'update'])->name('profile-update');
 Route::post('/profile',[ProfileController::class,'update_photo'])->name('photo-update');
+Route::post('/change_password',[ProfileController::class,'change_password'])->name('password-update');
 
 // login
 Route::get('/admin/login',[AdminLoginController::class,'index'])->name('login-index');
@@ -165,4 +169,8 @@ Route::get('/dash', function () {
 
 
 
-Route::get('query',[DashboardController::class,'sample'])->name('query');
+Route::get('query',[TestController::class,'assign_position'])->name('query');
+
+
+Route::get('result',[ResultController::class,'result'])->name('result');
+

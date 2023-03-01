@@ -25,16 +25,28 @@ class ProfileController extends Controller
 
             ]);
 
-        
-            if(Hash::check($request->password1,Auth::User()->password))
+          
+        return redirect()->route('profile-index')->with($update,'update');
+    }
+
+
+
+    public function change_password(Request $request)
+    {
+        if(Hash::check($request->password1,Auth::User()->password))
             {
                User::whereid(Auth::User()->id)->update([
                 'password' => Hash::make($request->password2),
                 ]);
-               $update = 'Profile Successfully Updated';
+               $update = 'Password Successfully Updated';
             }
-               
-        return redirect()->route('profile-index')->with($update,'update');
+
+        else
+        {
+            $update = 'Invalid Password';
+        }
+
+        return redirect()->route('profile-index')->with($update,'password');
     }
 
 

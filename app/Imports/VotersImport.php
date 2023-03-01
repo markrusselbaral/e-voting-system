@@ -19,11 +19,11 @@ class VotersImport implements ToModel
             'ismis_id'          => $row[1],
             'fname'             => $row[2],
             'lname'             => $row[3],
-            'course_section_id' => $row[4],
-            'status_id'         => $row[5],
-            'department_id'     => $row[6],
-            
-            'college_id'        => $row[7],
+            'course_section'    => $row[4],
+            'status'            => 'not yet',
+            'department'        => $row[6],
+            'college'           => $row[7],
+            'email'             => $row[8],
         ]);
     }
 }

@@ -1,5 +1,5 @@
 @foreach($votes as $value)
-
+ 
 <script>
   const ctx{{ $value->id }} = document.getElementById('{{ $value->id }}');
 
@@ -27,4 +27,4 @@
   
 </script>
  
-  @endforeach
+@endforeach

@@ -116,21 +116,26 @@
                                         <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                                             
                                             <li class="nav-item">
-                                                <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
-                                                    Settings
+                                                <a href="#settings" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
+                                                    Personal Info
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#password" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
+                                                    Change Password
                                                 </a>
                                             </li>
                                         </ul>
 
 
-                                    <form action="{{ route('profile-update') }}" method="POST" enctype="multipart/form-data">
-                                                            @csrf
+                                    
                                         <div class="tab-content">
                                             
                                             
                                             
-                                            <div class="tab-pane" id="settings">
-                                               
+                                            <div class="tab-pane show active" id="settings">
+                                               <form action="{{ route('profile-update') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
                                                     <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -146,11 +151,18 @@
                                                             </div>
                                                         </div>
                                                         
-                                                    </div> <!-- end row -->
-    
-
+                                                    </div> <!-- end row -->                
+                                                    <div class="text-end">
+                                                        <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        
+                                            <div class="tab-pane" id="password">
+                                               <form action="{{ route('password-update') }}" method="POST">
+                                                @csrf
+                                                    <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Change Password </h5>
                                                     <div class="row">
-                                                        <h5 class="mb-4 text-uppercase">Change Password</h5>
                                                         <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label for="userpassword" class="form-label">Type Old Password</label>
@@ -177,7 +189,6 @@
                                             <!-- end settings content-->
     
                                         </div> <!-- end tab-content -->
-                                    </form>
                                     </div> <!-- end card body -->
                                 </div> <!-- end card -->
                             </div> <!-- end col -->

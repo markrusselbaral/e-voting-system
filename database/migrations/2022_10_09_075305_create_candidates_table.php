@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('department');
             $table->string('college');
             $table->unsignedBigInteger('position_id')->nullable();
-            $table->foreign('position_id')->references('id')->on('positions');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             $table->string('partylist');
             $table->string('picture');
             

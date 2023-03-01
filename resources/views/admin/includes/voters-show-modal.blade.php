@@ -17,7 +17,7 @@
             $('#course_sections').html(response.candidates[0].course_section)
             $('#departments').html(response.candidates[0].department)
             $('#colleges').html(response.candidates[0].college)
-            $('#candidate-picture').attr('src', '../uploads/image3/'+response.candidates[0].picture)
+            $('#candidate-picture').attr('src', '../uploads/image4/'+response.candidates[0].picture)
          }
      });
     });

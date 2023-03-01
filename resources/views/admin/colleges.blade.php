@@ -72,7 +72,7 @@
                 <div class="mb-3">
                 	<input type="hidden" name="edit_college_id" id="edit-college-id">
                     <label for="college-edit" class="form-label">College</label>
-                    <input type="text" class="form-control" id="college-edit" placeholder="Enter College" name="college_edit">
+                    <input type="text" class="form-control" id="college-edit" placeholder="Enter College" name="college_edit" required>
                 </div>
                 <!-- ENDCONTENT -->
                
@@ -103,7 +103,7 @@
                 <!-- CONTENT -->
                 <div class="mb-3">
                     <label for="collage" class="form-label">College</label>
-                    <input type="text" class="form-control" id="college" placeholder="Enter College" name="college">
+                    <input type="text" class="form-control" id="college" placeholder="Enter College" name="college" required>
                 </div>
                 <!-- ENDCONTENT -->
                
