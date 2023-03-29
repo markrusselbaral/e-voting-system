@@ -27,10 +27,129 @@ class UserController extends Controller
     {
         // not yet done
         $data = ['LoggedUserInfo'=>VoterLogin::where('id', session('LoggedUser'))->first()];
+
+        // CTAS
         if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DCOS')
         {
-            $candidates = Position::with('candidate')->select('*')->where('position','!=','CANR GOVERNOR')->where('position','!=','CTE GOVERNOR')->get();
+            $candidates = Position::with('candidate')
+                ->whereIn('position', [
+                    'CTAS GOVERNOR', 
+                    'CTAS VICE GOVERNOR', 
+                    'DCOS REPRESENTATIVE', 
+                    'PRESIDENT', 
+                    'VICE PRESIDENT', 
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+
         }
+
+        // else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DBOA')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CTAS GOVERNOR')
+        //         ->where('position','=','CTAS VICE GOVERNOR')
+        //         ->where('position','=','DBOA REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DHMIT')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CTAS GOVERNOR')
+        //         ->where('position','=','CTAS VICE GOVERNOR')
+        //         ->where('position','=','DHMIT REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // // CTAS
+
+
+        // // CANR
+        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'FESS')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CANR GOVERNOR')
+        //         ->where('position','=','CANR VICE GOVERNOR')
+        //         ->where('position','=','FESS REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'ASA')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CANR GOVERNOR')
+        //         ->where('position','=','CANR VICE GOVERNOR')
+        //         ->where('position','=','ASA REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+                
+        //         ->get();
+        // }
+        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'DABE')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CANR GOVERNOR')
+        //         ->where('position','=','CANR VICE GOVERNOR')
+        //         ->where('position','=','DABE REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // // CANR
+
+        // // CTE
+        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CTE GOVERNOR')
+        //         ->where('position','=','CTE VICE GOVERNOR')
+        //         ->where('position','=','DGED REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CTE GOVERNOR')
+        //         ->where('position','=','CTE VICE GOVERNOR')
+        //         ->where('position','=','DGED REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DSED')
+        // {
+        //     $candidates = Position::with('candidate')
+        //         ->select('*')
+        //         ->where('position','=','CTE GOVERNOR')
+        //         ->where('position','=','CTE VICE GOVERNOR')
+        //         ->where('position','=','DSED REPRESENTATIVE')
+        //         ->where('position','=','PRESIDENT')
+        //         ->where('position','=','VICE PRESIDENT')
+        //         ->where('position','=','SENATOR')
+        //         ->get();
+        // }
+
+
         // not yet done
 
 
@@ -54,7 +173,7 @@ class UserController extends Controller
                     {
                         $mail_data = [
                         'recipient' => $data['LoggedUserInfo']['email'],
-                        'fromEmail' => 'hr@newgenitsolution.tech',
+                        'fromEmail' => 'evoting@bisubilar.org',
                         'fromName' => 'markrusselbaral',
                         'subject' => 'Verification code',
                         'body' => $verification_email['verification_number']
