@@ -168,9 +168,14 @@
  
                                        
 
-
-
+                        <form action="{{ route('result') }}" method="POST">
+                            @csrf
+                         <button class="btn btn-primary mb-2" type="submit">
+                            <i class="mdi mdi-cloud-print me-2"> Print</i>
+                        </button>
+                        </form>
                         <div class="row">
+
                             @foreach($votes as $value)
                             <div class="col-xl-6">
                                 <div class="card">

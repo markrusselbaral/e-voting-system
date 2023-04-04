@@ -172,5 +172,5 @@ Route::get('/dash', function () {
 Route::get('query',[TestController::class,'assign_position'])->name('query');
 
 
-Route::get('result',[ResultController::class,'result'])->name('result');
+Route::post('result',[ResultController::class,'printResult'])->name('result');
 

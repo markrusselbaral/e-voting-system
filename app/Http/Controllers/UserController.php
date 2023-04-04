@@ -44,110 +44,117 @@ class UserController extends Controller
 
         }
 
-        // else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DBOA')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CTAS GOVERNOR')
-        //         ->where('position','=','CTAS VICE GOVERNOR')
-        //         ->where('position','=','DBOA REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DHMIT')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CTAS GOVERNOR')
-        //         ->where('position','=','CTAS VICE GOVERNOR')
-        //         ->where('position','=','DHMIT REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // // CTAS
+        else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DBOA')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CTAS GOVERNOR',
+                    'CTAS VICE GOVERNOR',
+                    'DBOA REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        else if($data['LoggedUserInfo']['college'] == 'CTAS' && $data['LoggedUserInfo']['department'] == 'DHMIT')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CTAS GOVERNOR',
+                    'CTAS VICE GOVERNOR',
+                    'DHMIT REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        // CTAS
 
 
-        // // CANR
-        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'FESS')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CANR GOVERNOR')
-        //         ->where('position','=','CANR VICE GOVERNOR')
-        //         ->where('position','=','FESS REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'ASA')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CANR GOVERNOR')
-        //         ->where('position','=','CANR VICE GOVERNOR')
-        //         ->where('position','=','ASA REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-                
-        //         ->get();
-        // }
-        // else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'DABE')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CANR GOVERNOR')
-        //         ->where('position','=','CANR VICE GOVERNOR')
-        //         ->where('position','=','DABE REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // // CANR
+        // CANR
+        else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'FESS')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CANR GOVERNOR',
+                    'CANR VICE GOVERNOR',
+                    'FESS REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'ASA')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CANR GOVERNOR',
+                    'CANR VICE GOVERNOR',
+                    'ASA REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        else if($data['LoggedUserInfo']['college'] == 'CANR' && $data['LoggedUserInfo']['department'] == 'DABE')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CANR GOVERNOR',
+                    'CANR VICE GOVERNOR',
+                    'DABE REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        // CANR
 
-        // // CTE
-        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CTE GOVERNOR')
-        //         ->where('position','=','CTE VICE GOVERNOR')
-        //         ->where('position','=','DGED REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CTE GOVERNOR')
-        //         ->where('position','=','CTE VICE GOVERNOR')
-        //         ->where('position','=','DGED REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
-        // else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DSED')
-        // {
-        //     $candidates = Position::with('candidate')
-        //         ->select('*')
-        //         ->where('position','=','CTE GOVERNOR')
-        //         ->where('position','=','CTE VICE GOVERNOR')
-        //         ->where('position','=','DSED REPRESENTATIVE')
-        //         ->where('position','=','PRESIDENT')
-        //         ->where('position','=','VICE PRESIDENT')
-        //         ->where('position','=','SENATOR')
-        //         ->get();
-        // }
+        // CTE
+        else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CTE GOVERNOR',
+                    'CTE VICE GOVERNOR',
+                    'DGED REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DGED')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CTE GOVERNOR',
+                    'CTE VICE GOVERNOR',
+                    'DGED REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
+        else if($data['LoggedUserInfo']['college'] == 'CTE' && $data['LoggedUserInfo']['department'] == 'DSED')
+        {
+            $candidates = Position::with('candidate')
+                ->whereIn('position',[
+                    'CTE GOVERNOR',
+                    'CTE VICE GOVERNOR',
+                    'DSED REPRESENTATIVE',
+                    'PRESIDENT',
+                    'VICE PRESIDENT',
+                    'SENATOR'])
+                ->select('positions.*')
+                ->get();
+        }
 
 
         // not yet done
@@ -173,7 +180,7 @@ class UserController extends Controller
                     {
                         $mail_data = [
                         'recipient' => $data['LoggedUserInfo']['email'],
-                        'fromEmail' => 'evoting@bisubilar.org',
+                        'fromEmail' => 'markrusselbaral5@gmail.com',
                         'fromName' => 'markrusselbaral',
                         'subject' => 'Verification code',
                         'body' => $verification_email['verification_number']

@@ -17,7 +17,7 @@
         <span> Voters </span>
     </a>
 </li>
-
+@if(auth()->user()->role == 'admin')
 <li class="side-nav-item">
     <a href="{{ route('position-index') }}" class="side-nav-link">
         <i class="uil-location"></i>
@@ -52,7 +52,7 @@
         <span> Partylist </span>
     </a>
 </li>
-
+@endif
 <li class="side-nav-item">
     <a href="{{ route('candidate-index') }}" class="side-nav-link">
         <i class="uil-user"></i>
@@ -61,7 +61,7 @@
 </li>
 
 <li class="side-nav-title side-nav-item">Settings</li>
-
+@if(auth()->user()->role == 'admin')
 <li class="side-nav-item">
     <a href="{{ route('user-index') }}" class="side-nav-link">
         <i class="uil-users-alt"></i>
@@ -69,13 +69,14 @@
     </a>
 </li>
 
+
 <li class="side-nav-item">
     <a href="{{ route('title-index') }}" class="side-nav-link">
         <i class="uil-comments-alt"></i>
         <span> Election Title </span>
     </a>
 </li>
-
+@endif
 <li class="side-nav-item">
     <a href="{{ route('profile-index') }}" class="side-nav-link">
         <i class="uil-user"></i>
