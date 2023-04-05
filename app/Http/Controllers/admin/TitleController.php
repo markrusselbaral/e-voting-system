@@ -11,19 +11,27 @@ class TitleController extends Controller
 {
     public function index()
     {
-        $title = Title::all();
-        $startorstop = Startelection::select('startorstop')->first();
-
-        if($startorstop['startorstop'] == '0')
+        if(Auth()->user()->role == 'admin')
         {
-            $election = 'Start';
-            $color = '#97cf8a;';
+            $title = Title::all();
+            $startorstop = Startelection::select('startorstop')->first();
+
+            if($startorstop['startorstop'] == '0')
+            {
+                $election = 'Start';
+                $color = '#97cf8a;';
+            }
+            else{
+                $color = '#FA5C7C;';
+                $election = 'Stop';
+            }
+            return view('admin.title', compact('title','election','color'));
         }
-        else{
-            $color = '#FA5C7C;';
-            $election = 'Stop';
+        else
+        {
+            return "Forbidden";
         }
-        return view('admin.title', compact('title','election','color'));
+        
     }
 
 

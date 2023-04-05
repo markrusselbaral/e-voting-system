@@ -11,8 +11,16 @@ class PositionsController extends Controller
 {
     public function index()
     {
-        $positions = Position::all();
-        return view('admin.positions', compact('positions'));
+        if(Auth()->user()->role == 'admin')
+        {
+            $positions = Position::all();
+            return view('admin.positions', compact('positions'));
+        }
+        else
+        {
+            return "Forbidden";
+        }
+        
     }
 
     public function save(Request $request)

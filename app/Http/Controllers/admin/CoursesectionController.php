@@ -6,13 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course_section;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesectionController extends Controller
 {
     public function index()
     {
-        $course_section = Course_section::all();
-        return view('admin.course_sections', compact('course_section'));
+        if(Auth()->user()->role == 'admin')
+        {
+            $course_section = Course_section::all();
+            return view('admin.course_sections', compact('course_section'));
+        }
+        else
+        {
+            return "Forbidden";
+        }
+        
     }
 
     public function save(Request $request)

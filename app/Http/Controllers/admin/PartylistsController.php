@@ -11,8 +11,15 @@ class PartylistsController extends Controller
 {
     public function index()
     {
-        $partylist = Partylist::all();
-        return view('admin.partylists', compact('partylist'));
+        if(Auth()->user()->role == 'admin')
+        {
+            $partylist = Partylist::all();
+            return view('admin.partylists', compact('partylist'));
+        }
+        else
+        {
+            return "Forbidden";
+        }
     }
 
     public function save(Request $request)

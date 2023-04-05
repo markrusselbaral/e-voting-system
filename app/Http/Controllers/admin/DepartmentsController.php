@@ -10,8 +10,16 @@ class DepartmentsController extends Controller
 {
     public function index()
     {
-        $department = Department::all();
-        return view('admin.departments', compact('department'));
+        if(Auth()->user()->role == 'admin')
+        {
+            $department = Department::all();
+           return view('admin.departments', compact('department'));
+        }
+        else
+        {
+            return "Forbidden";
+        }
+        
     }
 
     public function save(Request $request)

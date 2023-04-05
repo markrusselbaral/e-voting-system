@@ -10,6 +10,7 @@ class StartorstopController extends Controller
 {
     public function change()
     {
+        
         $startorstop = Startelection::select('startorstop')->first();
         if($startorstop['startorstop'] == '0')
         {

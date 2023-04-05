@@ -13,8 +13,16 @@ class UserManagementController extends Controller
 {
     public function index()
     {
-        $user = User::all();
-        return view('admin.user-management', compact('user'));
+        if(Auth()->user()->role == 'admin')
+        {
+            $user = User::all();
+            return view('admin.user-management', compact('user'));
+        }
+        else
+        {
+            return "Forbidden";
+        }
+        
     }
 
     public function save(Request $request)
