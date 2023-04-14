@@ -38,6 +38,7 @@
 
 
 <body>
+	
 	<span style="font-weight: bold; font-size: 1.5rem; padding-bottom: 2rem;">
 		SSG ELECTION RESULTS
 	</span>
