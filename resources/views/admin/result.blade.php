@@ -11,30 +11,34 @@
 				
 </head>
 
-	<style>
-		table {
-		   border-collapse: collapse;
- 		   width: 100%;
-  		   margin: 0 auto;
-		}
+<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		margin: 0 auto;
+	}
 
-		th,
-		td {
-		  text-align: left;
-		  padding: 8px;
-		  border-bottom: 1px solid #ddd;
-		}
+	th, td {
+		text-align: left;
+		padding: 8px;
+		border-bottom: 1px solid #ddd;
+	}
 
-		th {
-		  background-color: #000;
-		  color: #fff;
-		}
+	th {
+		background-color: #000;
+		color: #fff;
+	}
 
-		tbody tr:nth-child(even) {
-		  background-color: #f2f2f2;
-		}
+	tbody tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
 
-	</style>
+	/* Highlight winner in green */
+	.winner {
+		background-color: #8BC34A;
+	}
+
+</style>
 
 
 <body>
@@ -51,15 +55,29 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	@foreach($votes as $value)
-	  		@foreach($value->votes as $vote)
-	    <tr>
-	      <td>{{ $value->position }}</td>
-	      <td>{{ $vote->fname }} {{ $vote->lname }}</td>
-	      <td>{{ $vote->votecount }}</td>
-	    </tr>
-	    	@endforeach
-	    @endforeach
+	  	<?php
+	  		$maxVotes = 0; // Initialize variable to keep track of maximum votes
+	  		foreach($votes as $value) {
+	  			foreach($value->votes as $vote) {
+	  				if($vote->votecount > $maxVotes) {
+	  					$maxVotes = $vote->votecount; // Update maximum votes
+	  				}
+	  			}
+	  		}
+	  		foreach($votes as $value) {
+	  			foreach($value->votes as $vote) {
+	  				if($vote->votecount == $maxVotes) {
+	  					echo '<tr class="winner">'; // Highlight winner row
+	  				} else {
+	  					echo '<tr>';
+	  				}
+	  				echo '<td>' . $value->position . '</td>';
+	  				echo '<td>' . $vote->fname . ' ' . $vote->lname . '</td>';
+	  				echo '<td>' . $vote->votecount . '</td>';
+	  				echo '</tr>';
+	  			}
+	  		}
+	  	?>
 	  </tbody>
 	</table>
 

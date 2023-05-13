@@ -12,7 +12,7 @@ use App\Models\VoterLogin;
 use PDF;
 
 class ResultController extends Controller
-{
+{ 
     public function result()
     {
         $votes = Position::with(['votes' => function($query) {
